@@ -4,9 +4,8 @@ import os
 import sys
 import re
 from calendar import monthrange
-
-
 from dateutil.parser import parse
+from database.maintainer_db_init import *
 
 conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
 cur = conn.cursor()   
