@@ -1,6 +1,7 @@
 import csv
 from datetime import datetime
 import sqlite3
+from database.popcon_db_init import *
 
 connection = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
 cursor = connection.cursor()
@@ -11,7 +12,8 @@ with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/toda
         x=datetime.now()
         for row in data:
                 name=row[1]
-                date="09/06/2022"
+                #date="09/06/2022"
+                date=x
                 inst=row[2]
                 vote=row[3]
                 old=row[4]
