@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 import sqlite3
 
-conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
-cur = conn.cursor()
+def target_con(con):
+       conn = sqlite3.connect(con)
+       cur = conn.cursor()
+       return cur
 
+target_con('/data/yellow/vineet/database/bi_multi_tables.db')
 # Creating table 
 cur.execute("""CREATE TABLE IF NOT EXISTS buildinfo_data (
        source varchar,
