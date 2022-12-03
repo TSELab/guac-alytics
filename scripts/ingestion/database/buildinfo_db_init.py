@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 import sqlite3
+import constants as c
 
 def target_con(con):
        conn = sqlite3.connect(con)
        cur = conn.cursor()
        return cur
 
-target_con('/data/yellow/vineet/database/bi_multi_tables.db')
+target_con(c.db_loc)
 # Creating table 
 cur.execute("""CREATE TABLE IF NOT EXISTS buildinfo_data (
        source varchar,
