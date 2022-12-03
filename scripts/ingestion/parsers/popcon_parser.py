@@ -6,15 +6,14 @@ import requests
 import csv
 import os
 import shutil
+from scripts.ingestion.constants import *
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
 
 
 # Getting data from popularity contest
-url = 'https://popcon.debian.org/by_inst'
-
-page = requests.get(url)
+page = requests.get(constants.inst_loc)
 
 data = bs(page.content,"html.parser")
 data = str(data)
@@ -24,8 +23,7 @@ if ('\n\n') in data:
         data = data.split('\n')[1]
 else:
         data = data
-
-
+        
 # Storing the popularity contest values in a text file
 with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt', 'w', encoding="utf-8") as fdin:
         fdin.write(data)

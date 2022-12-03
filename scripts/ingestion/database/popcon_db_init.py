@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 import sqlite3
+from scripts.ingestion.constants import *
 
 def target_con(con):
         connection = sqlite3.connect(con)
@@ -6,7 +8,7 @@ def target_con(con):
         return cursor
 
 def db_init_main():
-        target_con('/data/yellow/vineet/database/bi_multi_tables.db')
+        target_con(constants.db_loc)
         cursor.execute("""CREATE TABLE IF NOT EXISTS popularity_table(
                 name text primary key,
                 date date,

@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 import csv
 import sqlite3
+from scripts.ingestion.database.maintainer_db_init import db_init_main
 
-conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
-cur = conn.cursor()
-
-def main():
+def maint():
     with open('/data/yellow/vineet/python_files/new_scripts/database_creation/maintainer.csv', 'r',encoding= 'unicode_escape') as file:
         data = csv.reader(file,delimiter=',')   
         no_records = 0 
@@ -25,5 +23,8 @@ def main():
         print(no_records, ' checked')
         print('Closing file')
 
-main()
+if __name__ == "__main__":
+        db_init_main()
+        maint()
+
 conn.close()

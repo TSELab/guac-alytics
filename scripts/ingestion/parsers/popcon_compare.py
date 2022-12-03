@@ -7,18 +7,17 @@ import requests
 import csv
 import os
 import shutil
+from scripts.ingestion.constants import *
+from scripts.ingestion.database.popcon_db_init import db_init_main
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
 
-# Connecting to database
-conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
-cur = conn.cursor()
+#Connecting to database
+db_init_main()
 
 # Getting data from popularity contest
-url = 'https://popcon.debian.org/by_inst'
-
-page = requests.get(url)
+page = requests.get(constants.inst_loc)
 
 data = bs(page.content,"html.parser")
 data = str(data)
@@ -58,7 +57,6 @@ with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/toda
         print("Downloaded Data")
     
 fdin.close()
-totinst=282358448
 
 # Copying the data from text file to csv 
 with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt', 'r', encoding="utf-8") as fdin, open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv','w', encoding="utf-8",newline='') as fdout:

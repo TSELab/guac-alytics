@@ -3,10 +3,8 @@ import requests
 import os.path
 import re
 import csv
-
-location = "https://popcon.debian.org/maint/by_inst"
-target_filename = '/data/yellow/vineet/python_files/new_scripts/database_creation/maintainer.txt'
-regex = "(\ )+"
+from scripts.ingestion.constants import *
+from scripts.ingestion.database.maintainer_db_init import db_init_main
 
 def parse_line(line):
     # Header format
@@ -15,7 +13,7 @@ def parse_line(line):
         None, None, None, None, None, None, None
     line = line.strip()
 
-    comma_divided = re.sub(regex, ",", line)
+    comma_divided = re.sub(constants.regex, ",", line)
     comma_divided = comma_divided.split(",")
     rank = comma_divided[0]
     name = ' '.join(comma_divided[1:len(comma_divided)-5])
@@ -24,16 +22,16 @@ def parse_line(line):
     
     return (rank, name, inst, vote, old, recent, no_files)
 
-def main():
-    if os.path.exists(target_filename):
+def parser():
+    if os.path.exists(constants.maintainer_tar_file):
         print("using local copy of the file")
     else:
         print("downloading file")
-        response = requests.get(location)
-        with open(target_filename, "wt") as fp:
+        response = requests.get(constants.maint_inst_loc)
+        with open(constants.maintainer_tar_file, "wt") as fp:
             fp.write(response.text)
 
-    with open(target_filename, "rt") as fp:
+    with open(constants.maintainer_tar_file, "rt") as fp:
         data = fp.read()
 
     with open('/data/yellow/vineet/python_files/new_scripts/database_creation/maintainer.csv','w', encoding="utf-8",newline='') as fdout:
@@ -46,4 +44,6 @@ def main():
             line = parse_line(line)
             o.writerow(line)
 
-main()
+if __name__ == "__main__":
+    db_init_main()
+    parser()
