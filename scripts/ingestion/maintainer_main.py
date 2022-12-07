@@ -2,7 +2,7 @@
 import csv
 import sqlite3
 from scripts.ingestion.constants import MAINTAINER_CSV_FILE
-from scripts.ingestion.database.maintainer_db_init import db_init_main
+from scripts.ingestion.database.maintainer_db_init import db_init
 
 def init():
     with open(constants.MAINTAINER_CSV_FILE, 'r',encoding= 'unicode_escape') as file:
