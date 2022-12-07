@@ -4,7 +4,7 @@ import os.path
 import re
 import csv
 from scripts.ingestion.constants import REGEX,MAINTAINER_TEXT_FILE,MAINTAINER_CSV_FILE,MAINTAINER_INST_LOC
-from scripts.ingestion.database.maintainer_db_init import db_init_main
+from scripts.ingestion.database.maintainer_db_init import db_init
 
 def parse_line(line):
     # Header format
