@@ -6,14 +6,14 @@ import requests
 import csv
 import os
 import shutil
-from scripts.ingestion.constants import *
+from scripts.ingestion.constants import INST_LOC,POPCON_TEXT,POPCON_CSV
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
 
 
 # Getting data from popularity contest
-page = requests.get(constants.inst_loc)
+page = requests.get(constants.INST_LOC)
 
 data = bs(page.content,"html.parser")
 data = str(data)
@@ -25,14 +25,14 @@ else:
         data = data
         
 # Storing the popularity contest values in a text file
-with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt', 'w', encoding="utf-8") as fdin:
+with open(constants.POPCON_TEXT, 'w', encoding="utf-8") as fdin:
         fdin.write(data)
         print("Downloaded Data")
     
 fdin.close()
 
 # Copying the data from text file to csv 
-with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt', 'r', encoding="utf-8") as fdin, open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv','w', encoding="utf-8",newline='') as fdout:
+with open(constants.POPCON_TEXT, 'r', encoding="utf-8") as fdin, open(constants.POPCON_CSV,'w', encoding="utf-8",newline='') as fdout:
         wr = csv.DictWriter(fdout, fieldnames=['sno','Name', 'inst', 'vote', 'old', 'recent', 'no_files', 'maintainer'], extrasaction='ignore')  # ignore unwanted fields 
         o=csv.writer(fdout)
         for line in fdin:
@@ -43,4 +43,4 @@ with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/toda
 
 fdin.close()
 fdout.close()
-os.remove('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt')   
+os.remove(constants.POPCON_TEXT)   

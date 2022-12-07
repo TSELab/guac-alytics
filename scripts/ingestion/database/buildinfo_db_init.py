@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 import sqlite3
-from scripts.ingestion.constants import *
+from scripts.ingestion.constants import DB_LOC
 
 def target_con(con):
        conn = sqlite3.connect(con)
        cur = conn.cursor()
        return cur
 
-def db_init_main():
-       target_con(constants.db_loc)
+def db_init():
+       target_con(constants.DB_LOC)
        # Creating table 
        cur.execute("""CREATE TABLE IF NOT EXISTS buildinfo_data (
               source varchar,

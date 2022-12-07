@@ -5,7 +5,7 @@ import sys
 import re
 from calendar import monthrange
 from dateutil.parser import parse
-from scripts.ingestion.database.buildinfo_db_init import db_init_main
+from scripts.ingestion.database.buildinfo_db_init import db_init
 
 # Parsing dependenies in each file
 def parse_build_depends(entry):
@@ -62,7 +62,7 @@ def populate_db(location):
     
 if __name__ == "__main__":
 
-    db_init_main()
+    db_init()
 
     if len(sys.argv) < 1:
         print("No path given. What do you want me to insert?")

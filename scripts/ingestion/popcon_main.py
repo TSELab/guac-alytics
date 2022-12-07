@@ -1,10 +1,11 @@
 import csv
 from datetime import datetime
 import sqlite3
-from scripts.ingestion.database.popcon_db_init import db_init_main
+from scripts.ingestion.database.popcon_db_init import db_init
+from scripts.ingestion.constants import POPCON_CSV
 
 def popcon():
-        with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv', 'r',encoding= 'unicode_escape') as file:
+        with open(constants.POPCON_CSV, 'r',encoding= 'unicode_escape') as file:
                 data = csv.reader(file,delimiter=',')   
                 no_records = 0  
                 x=datetime.now()
@@ -22,7 +23,7 @@ def popcon():
                         no_records += 1
 
 if __name__ == "__main__":
-        db_init_main()
+        db_init()
         popcon()
         
 connection.close()

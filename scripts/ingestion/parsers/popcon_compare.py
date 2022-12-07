@@ -7,17 +7,17 @@ import requests
 import csv
 import os
 import shutil
-from scripts.ingestion.constants import *
-from scripts.ingestion.database.popcon_db_init import db_init_main
+from scripts.ingestion.constants import POPCON_CSV,POPCON_TEXT,INST_LOC
+from scripts.ingestion.database.popcon_db_init import db_init
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
 
 #Connecting to database
-db_init_main()
+db_init()
 
 # Getting data from popularity contest
-page = requests.get(constants.inst_loc)
+page = requests.get(constants.INST_LOC)
 
 data = bs(page.content,"html.parser")
 data = str(data)
@@ -52,14 +52,14 @@ for i in d:
 print("Final value is ",l)          
 
 # Storing the popularity contest values in a text file
-with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt', 'w', encoding="utf-8") as fdin:
+with open(constants.POPCON_TEXT, 'w', encoding="utf-8") as fdin:
         fdin.write(data)
         print("Downloaded Data")
     
 fdin.close()
 
 # Copying the data from text file to csv 
-with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt', 'r', encoding="utf-8") as fdin, open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv','w', encoding="utf-8",newline='') as fdout:
+with open(constants.POPCON_TEXT, 'r', encoding="utf-8") as fdin, open(constants.POPCON_CSV,'w', encoding="utf-8",newline='') as fdout:
         wr = csv.DictWriter(fdout, fieldnames=['sno','Name', 'inst', 'vote', 'old', 'recent', 'no_files', 'maintainer'], extrasaction='ignore')  # ignore unwanted fields 
         o=csv.writer(fdout)
         for line in fdin:
@@ -70,17 +70,17 @@ with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/toda
 
 fdin.close()
 fdout.close()
-os.remove('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.txt')   
+os.remove(constants.POPCON_TEXT)   
 
 year=date.today().year
 mon=date.today().month
 day=date.today().day
 
 # Saving data of each day
-shutil.copyfile('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv','/data/yellow/vineet/raw_data/popularity_contest/{}/{}/{}'.format(year,mon,day))
+shutil.copyfile(constants.POPCON_CSV,'/data/yellow/vineet/raw_data/popularity_contest/{}/{}/{}'.format(year,mon,day))
 
 # Comparing the data from csv file and existing table and updating its values 
-with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv', 'r',encoding= 'unicode_escape') as file:
+with open(constants.POPCON_CSV, 'r',encoding= 'unicode_escape') as file:
         data = csv.reader(file,delimiter=',')   
         no_records = 0 
         nor=amd/l
@@ -107,5 +107,5 @@ with open('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/toda
 
 print('Closing file')
 file.close()
-os.remove('/data/yellow/vineet/python_files/new_scripts/data_pre_processing/today.csv')
+os.remove(constants.POPCON_CSV)
 conn.close()
