@@ -8,7 +8,7 @@ def target_con(con):
        return cur
 
 def db_init():
-       target_con(constants.DB_LOC)
+       target_con(DB_LOC)
        # Creating table 
        cur.execute("""CREATE TABLE IF NOT EXISTS buildinfo_data (
               source varchar,
@@ -16,6 +16,3 @@ def db_init():
               arch varchar,
               time datetime,
               deps varchar)""")   
-
-conn.commit()
-conn.close()

@@ -8,7 +8,7 @@ def target_con(con):
         return cur
 
 def db_init():
-        target_con(constants.DB_LOC)
+        target_con(DB_LOC)
         cur.execute("""CREATE TABLE IF NOT EXISTS maintainer(
                 name text primary key,
                 inst integer,
@@ -18,6 +18,3 @@ def db_init():
                 no_files integer
                 )""") 
 
-db_init()
-conn.commit()
-conn.close()

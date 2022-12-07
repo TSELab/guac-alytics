@@ -3,9 +3,10 @@ import csv
 import sqlite3
 from scripts.ingestion.constants import MAINTAINER_CSV_FILE
 from scripts.ingestion.database.maintainer_db_init import db_init
+from scripts.ingestion.parsers.maintainer_parser import parser
 
 def init():
-    with open(constants.MAINTAINER_CSV_FILE, 'r',encoding= 'unicode_escape') as file:
+    with open(MAINTAINER_CSV_FILE, 'r',encoding= 'unicode_escape') as file:
         data = csv.reader(file,delimiter=',')   
         no_records = 0 
         for row in data:
@@ -26,6 +27,7 @@ def init():
 
 if __name__ == "__main__":
         db_init()
+        parser()
         init()
 
 conn.close()
