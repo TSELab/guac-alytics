@@ -3,7 +3,7 @@ import requests
 import os
 import re
 import csv
-from scripts.ingestion.constants import INST_LOC,POPCON_TEXT,POPCON_CSV
+from scripts.ingestion.constants import INST_LOC,POPCON_TEXT,POPCON_CSV, REGEX
 
 x=datetime.now()
         
