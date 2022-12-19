@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import csv
 import sqlite3
+from scripts.ingestion.constants import MAINTAINER_CSV_FILE
+from scripts.ingestion.database.maintainer_db_init import db_init
+from scripts.ingestion.parsers.maintainer_parser import parser
 
-conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
-cur = conn.cursor()
-
-def main():
-    with open('/data/yellow/vineet/python_files/new_scripts/database_creation/maintainer.csv', 'r',encoding= 'unicode_escape') as file:
+def init():
+    with open(MAINTAINER_CSV_FILE, 'r',encoding= 'unicode_escape') as file:
         data = csv.reader(file,delimiter=',')   
         no_records = 0 
         for row in data:
@@ -25,5 +25,9 @@ def main():
         print(no_records, ' checked')
         print('Closing file')
 
-main()
+if __name__ == "__main__":
+        db_init()
+        parser()
+        init()
+
 conn.close()

@@ -4,12 +4,8 @@ import os
 import sys
 import re
 from calendar import monthrange
-
-
 from dateutil.parser import parse
-
-conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
-cur = conn.cursor()   
+from scripts.ingestion.database.buildinfo_db_init import db_init
 
 # Parsing dependenies in each file
 def parse_build_depends(entry):
@@ -22,7 +18,6 @@ def parse_build_depends(entry):
 
 
 def populate_db(location):
-
     # Using parser to parse the headers from buildinfo file
     parser = headerparser.HeaderParser()
     parser.add_field("Format")
@@ -67,6 +62,8 @@ def populate_db(location):
     
 if __name__ == "__main__":
 
+    db_init()
+
     if len(sys.argv) < 1:
         print("No path given. What do you want me to insert?")
         sys.exit(1)
@@ -80,4 +77,5 @@ if __name__ == "__main__":
     print("done")
 
 print("closing handle")
+conn.commit()
 conn.close() #close the connection
