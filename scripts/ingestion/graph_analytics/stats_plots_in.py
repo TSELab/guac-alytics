@@ -71,9 +71,9 @@ def plot_statistics():
 
     plt.figure()
     plt.grid(True, which ="both")
-    plt.plot(days[0], max_list, label = "max. in-degree", marker = 'o')
+    plt.plot(days, max_list, label = "max. in-degree", marker = 'o')
     for i, txt in enumerate(highest_degree_node):
-        plt.annotate(txt, (days[0][i], max_list[i]), rotation=90, size = 10)
+        plt.annotate(txt, (days[i], max_list[i]), rotation=90, size = 10)
 
     plt.xlabel('Quarterly tracking (2017-2022(Sep))')
     plt.ylabel('In-degree')
