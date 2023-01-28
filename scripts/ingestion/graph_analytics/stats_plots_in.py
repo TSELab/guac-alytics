@@ -89,8 +89,8 @@ def compute_statistics(degree_sequence):
     std_dev_list.append(math.log(statistics.stdev(degree_sequence)))
     min_list.append(math.log(min(degree_sequence)) if min(degree_sequence) != 0 else 0.0)
     max_list.append(math.log(max(degree_sequence)) if max(degree_sequence) != 0 else 0.0)
-    perc_25_list.append(math.log(np.percentile(degree_sequence, 25)))
-    perc_75_list.append(math.log(np.percentile(degree_sequence, 75)))
+    perc_25_list.append(math.log(np.percentile(degree_sequence, 25)) if np.percentile(degree_sequence, 25) != 0 else 0.0)
+    perc_75_list.append(math.log(np.percentile(degree_sequence, 75)) if np.percentile(degree_sequence, 75) != 0 else 0.0)
     highest_degree_node.append(max(G.nodes, key=G.in_degree) if len(G.nodes()) != 0 else 0.0)
 
 def build_graph():
