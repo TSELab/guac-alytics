@@ -3,7 +3,7 @@ import headerparser
 import os
 import re
 from calendar import monthrange
-from buildinfo_db_init import open_db, init_db, close_db, insert_build
+from build_db_init import open_db, init_db, close_db, insert_build
 import progressbar
 
 
