@@ -1,81 +1,169 @@
-import sqlite3
+import time
 import headerparser
 import os
-import sys
 import re
 from calendar import monthrange
-from dateutil.parser import parse
-from scripts.ingestion.database.buildinfo_db_init import db_init
+from scripts.ingestion.database.buildinfo_db_init import open_db, init_db, close_db, insert_build
+import progressbar
 
-# Parsing dependenies in each file
+
+from dateutil.parser import parse as du_parse
+
+t_in = time.time()
 def parse_build_depends(entry):
+
+    if entry is None:
+        return None
+
     deps = entry.split("\n")[1:]
     package = []
+    name=[]
+    version=[]
     for dep in deps:
-        name, version = dep.split(" (= ", 2)
-        package.append(name.strip() + '_' + version.strip("),\n "))
-    return package
+        d = dep.split(" (= ", 2)
+        # print(dep)
+        name.append(d[0].strip())
+        # print(name)
+        version.append(d[1].strip("),\n "))
+        # print(version)
+        package.append(d[0].strip() + '_' + d[1].strip("),\n "))
 
+    result = [(x, y, z) for x, y, z in zip(package, name, version)]
+    return result
 
-def populate_db(location):
-    # Using parser to parse the headers from buildinfo file
+def create_parser():
     parser = headerparser.HeaderParser()
     parser.add_field("Format")
-    parser.add_field("Source")
-    parser.add_field("Binary")
-    parser.add_field("Installed-Build-Depends")
-    parser.add_additional()  # Get all the other headers present
+    parser.add_field("Source", default=None)
+    parser.add_field("Binary", default=None)
+    parser.add_field("Architecture", default=None)
+    parser.add_field("Version", default=None)
+    parser.add_field("Checksums-Sha1", default=None)
+    parser.add_field("Checksums-Md5", default=None)
+    parser.add_field("Checksums-Sha256", default=None)
+    parser.add_field("Build-Origin", default=None)
+    parser.add_field("Build-Architecture", default=None)
+    parser.add_field("Build-Date", default=None)
+    parser.add_field("Build-Path", default=None)
+    parser.add_field("Installed-Build-Depends", None)
+    parser.add_field("Environment", default=None)
+    parser.add_additional()
+    return parser
 
-    print(location)
-    filenames = [k for k in os.listdir(location) if '.buildinfo' in k]   # Getting all the buildinfo files on the given day
+def parse_checksum(bin,md5,sha1,sha256):
+    result=[[]]
+   
+    if bin:
+        for item1 in bin:
+            m=[]
+            s1=[]
+            s2=[]
+            for item2 in md5:
+                if item1 in item2:
+                    m.append(item2)
+            for item2 in sha1:
+                if item1 in item2:
+                    s1.append(item2)
+
+            for item2 in sha256:
+                if item1 in item2:
+                    s2.append(item2)
+                    
+            result.append([item1,m,s1,s2])
+            
+        output = [sublst for sublst in result if len(sublst)>0]
+        # print(output)
+        return output
+    return None
+
+def populate_db(location, db_location):
+    walk = os.walk(location)
+    print("reading buildinfos from {}".format(location))
+    parser = create_parser()
+    con = open_db(db_location)
+    bar = progressbar.ProgressBar(redirect_stdout=True)
     
-    for file in filenames:
-        # print(file)
-        with open ('{}/{}'.format(location,file), 'r') as f:
-            data = f.read() 
-            data = re.sub(r'.*debian.org>$', '', data)
-            result = parser.parse_string(data)      # Parsing the data
-            
-            # Filling Null values if the header is not present in the data
-            if 'Installed-Build-Depends' in result:
-                deps = parse_build_depends(result['Installed-Build-Depends'])
-            else:
-                deps=None
-            
-            if 'Build-Date' in result:
-                build_time = parse(result['Build-Date']).isoformat()
-            else:
-                build_time=None
-
-            if 'Source' not in result:
-                result['Source']=None
-            if 'Version' not in result:
-                result['Version']=None
-            if 'Architecture' not in result:
-                result['Architecture']=None
-          
-            #insert records into the table
-            cur.execute('''INSERT OR REPLACE INTO buildinfo_data (source,version, arch, time, deps) VALUES (?,?,?,?,?)''',(result['Source'], result['Version'], result['Architecture'], build_time, str(deps)))
-            conn.commit()
+    for dirpath, dirnames, filenames in bar(walk):
         
+        for filename in filenames:
+            if not filename.endswith(".buildinfo"):
+                continue
+    
+            target = os.path.join(dirpath, filename)
+            print("reading {}...".format(target))
+                  
+            with open (target, 'r') as f:
+                data = f.read() 
+                data = re.sub(r'.*debian.org>$', '', data)
+                result = parser.parse_string(data)
+    # filenames = [k for k in os.listdir(location) if '.buildinfo' in k]
+    # for file in filenames:
+    #     print(file)
+    #     with open ('{}/{}'.format(location,file), 'r') as f:
+    # with open ('{}'.format(location), 'r') as f:
+            
+                # data = f.read() 
+                # data = re.sub(r'.*debian.org>$', '', data)
+                # result = parser.parse_string(data)
+
+                # we short-circuit parsing to avoid further processing source builds
+                if result['Architecture'] == 'source':
+                    continue
+                if result['Architecture'] == "all source":
+                    result['Architecture'] = 'all'
+
+                if 'Installed-Build-Depends' in result:
+                    deps = parse_build_depends(result['Installed-Build-Depends'])
+                else:
+                    deps=None
+                    
+                if result['Build-Date'] is not None:
+                    build_time = du_parse(result['Build-Date']).isoformat()
+                else:
+                    build_time=None
+                
+                if 'Binary' in result and result['Binary']:
+                    result['Binary'] = result["Binary"].split(" ")
+                else:
+                    result['Binary'] = None
+                
+                
+
+                if 'Checksums-Md5' in result and result['Checksums-Md5']:
+                    result['Checksums-Md5'] = result["Checksums-Md5"].split("\n")[1:]
+                    result['Checksums-Md5'] = [elem.strip() for elem in result['Checksums-Md5']]
+                else:
+                    result['Checksums-Md5'] = None
+                    
+                if 'Checksums-Sha1' in result and result['Checksums-Sha1']:
+                    result['Checksums-Sha1'] = result["Checksums-Sha1"].split("\n")[1:]
+                    result['Checksums-Sha1'] = [elem.strip() for elem in result['Checksums-Sha1']]
+                else:
+                    result['Checksums-Sha1'] = None
+                    
+                if 'Checksums-Sha256' in result and result['Checksums-Sha256']:
+                    result['Checksums-Sha256'] = result["Checksums-Sha256"].split("\n")[1:]
+                    result['Checksums-Sha256'] = [elem.strip() for elem in result['Checksums-Sha256']]
+                else:
+                    result['Checksums-Sha256'] = None
+                 
+                output=parse_checksum(result['Binary'],result['Checksums-Md5'],result['Checksums-Sha1'],result['Checksums-Sha256'])   
+                # print('Binary   ',result['Binary'])
+                # print('Build-Origin    ',result['Build-Origin'])
+                # print('Md5   ',result['Checksums-Md5'])
+                # print('Sha1    ',result['Checksums-Sha1'])
+                # print('Sha256    ',result['Checksums-Sha256'])
+                
+                cur = con.cursor()
+                insert_build(cur, result, build_time, deps,output) 
+                con.commit()
+    close_db(con)
 
     
 if __name__ == "__main__":
-
-    db_init()
-
-    if len(sys.argv) < 1:
-        print("No path given. What do you want me to insert?")
-        sys.exit(1)
-
-    for year in range(2017,2023):
-        for mon in range(1,13):
-            x=monthrange(year,mon)
-            for day in range(1,x[1]+1):
-                populate_db('/data/yellow/vineet/raw_data/buildinfo_data/{:4d}/{:02d}/{:02d}'.format(year, mon, day))
-    
-    print("done")
-
-print("closing handle")
-conn.commit()
-conn.close() #close the connection
+    location = '/data/yellow/vineet/raw_data/buildinfo_data'
+    db_location = '/data/yellow/vineet/database/bi_multi_tables.db'
+    init_db(db_location)
+    populate_db(location, db_location)
+    t_out = time.time()
+    print('Program run time in seconds:', t_out - t_in, '(s)')
