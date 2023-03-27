@@ -52,6 +52,9 @@ To run any of the scripts, execute the following command pattern:
 
 - `python 'Scripts Directory'/'Script Name'`
 
+For example
+- `python scripts/ingestion/buildinfo_main.py`
+
 
 ## Data Representation
 
