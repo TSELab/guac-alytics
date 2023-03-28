@@ -3,15 +3,21 @@ import headerparser
 import os
 import re
 from calendar import monthrange
-from scripts.ingestion.database.buildinfo_db_init import open_db, init_db, close_db, insert_build
+from database.buildinfo_db_init import open_db, init_db, close_db, insert_build
 import progressbar
-
-
 from dateutil.parser import parse as du_parse
 
 t_in = time.time()
-def parse_build_depends(entry):
 
+def parse_build_depends(entry):
+    """Parse the Installed-Build-Depends field from a buildinfo file.
+
+    Args:
+        entry (str): The Installed-Build-Depends field.
+
+    Returns:
+        list: A list of tuples containing package names, versions, and package names with versions.
+    """
     if entry is None:
         return None
 
@@ -21,17 +27,19 @@ def parse_build_depends(entry):
     version=[]
     for dep in deps:
         d = dep.split(" (= ", 2)
-        # print(dep)
         name.append(d[0].strip())
-        # print(name)
         version.append(d[1].strip("),\n "))
-        # print(version)
         package.append(d[0].strip() + '_' + d[1].strip("),\n "))
 
     result = [(x, y, z) for x, y, z in zip(package, name, version)]
     return result
 
 def create_parser():
+    """Parse the buildinfo page for headers
+
+    Returns:
+        list: A list of headers found in the package description
+    """
     parser = headerparser.HeaderParser()
     parser.add_field("Format")
     parser.add_field("Source", default=None)
@@ -51,32 +59,50 @@ def create_parser():
     return parser
 
 def parse_checksum(bin,md5,sha1,sha256):
+    """Parse the Checksums-Md5, Checksums-Sha1, and Checksums-Sha256 fields from a buildinfo file.
+
+    Args:
+        bin (list): A list of binary package names.
+        md5 (list): A list of Md5 checksums.
+        sha1 (list): A list of Sha1 checksums.
+        sha256 (list): A list of Sha256 checksums.
+
+    Returns:
+        list: A list of lists, where each sublist contains a binary package name, a list of Md5 checksums,
+              a list of Sha1 checksums, and a list of Sha256 checksums.
+    """
+    
     result=[[]]
    
     if bin:
         for item1 in bin:
-            m=[]
-            s1=[]
-            s2=[]
+            md=[]
+            sha=[]
+            sha2=[]
             for item2 in md5:
                 if item1 in item2:
-                    m.append(item2)
+                    md.append(item2)
             for item2 in sha1:
                 if item1 in item2:
-                    s1.append(item2)
+                    sha.append(item2)
 
             for item2 in sha256:
                 if item1 in item2:
-                    s2.append(item2)
+                    sha2.append(item2)
                     
-            result.append([item1,m,s1,s2])
+            result.append([item1,md,sha,sha2])
             
         output = [sublst for sublst in result if len(sublst)>0]
-        # print(output)
         return output
     return None
 
 def populate_db(location, db_location):
+    """Populate a database with buildinfo files in a directory.
+
+    Args:
+        location (str): The directory containing buildinfo files.
+        db_location (str): The path to the database file.
+    """
     walk = os.walk(location)
     print("reading buildinfos from {}".format(location))
     parser = create_parser()
@@ -86,7 +112,7 @@ def populate_db(location, db_location):
     for dirpath, dirnames, filenames in bar(walk):
         
         for filename in filenames:
-            if not filename.endswith(".buildinfo"):
+            if not filename.endswith(".buildinfo"):  # Walking through the folders to find all the buildinfo files
                 continue
     
             target = os.path.join(dirpath, filename)
@@ -96,17 +122,8 @@ def populate_db(location, db_location):
                 data = f.read() 
                 data = re.sub(r'.*debian.org>$', '', data)
                 result = parser.parse_string(data)
-    # filenames = [k for k in os.listdir(location) if '.buildinfo' in k]
-    # for file in filenames:
-    #     print(file)
-    #     with open ('{}/{}'.format(location,file), 'r') as f:
-    # with open ('{}'.format(location), 'r') as f:
-            
-                # data = f.read() 
-                # data = re.sub(r'.*debian.org>$', '', data)
-                # result = parser.parse_string(data)
-
-                # we short-circuit parsing to avoid further processing source builds
+                
+                # Filling Null values if the header is not present in the data
                 if result['Architecture'] == 'source':
                     continue
                 if result['Architecture'] == "all source":
@@ -126,8 +143,6 @@ def populate_db(location, db_location):
                     result['Binary'] = result["Binary"].split(" ")
                 else:
                     result['Binary'] = None
-                
-                
 
                 if 'Checksums-Md5' in result and result['Checksums-Md5']:
                     result['Checksums-Md5'] = result["Checksums-Md5"].split("\n")[1:]
@@ -148,13 +163,10 @@ def populate_db(location, db_location):
                     result['Checksums-Sha256'] = None
                  
                 output=parse_checksum(result['Binary'],result['Checksums-Md5'],result['Checksums-Sha1'],result['Checksums-Sha256'])   
-                # print('Binary   ',result['Binary'])
-                # print('Build-Origin    ',result['Build-Origin'])
-                # print('Md5   ',result['Checksums-Md5'])
-                # print('Sha1    ',result['Checksums-Sha1'])
-                # print('Sha256    ',result['Checksums-Sha256'])
-                
+               
                 cur = con.cursor()
+                
+                # to insert records into the table
                 insert_build(cur, result, build_time, deps,output) 
                 con.commit()
     close_db(con)
@@ -163,7 +175,7 @@ def populate_db(location, db_location):
 if __name__ == "__main__":
     location = '/data/yellow/vineet/raw_data/buildinfo_data'
     db_location = '/data/yellow/vineet/database/bi_multi_tables.db'
-    init_db(db_location)
-    populate_db(location, db_location)
+    init_db(db_location)  # Initializing the database
+    populate_db(location, db_location)    # Populating the data
     t_out = time.time()
     print('Program run time in seconds:', t_out - t_in, '(s)')

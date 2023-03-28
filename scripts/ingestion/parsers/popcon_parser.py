@@ -3,18 +3,18 @@ import requests
 import os
 import re
 import csv
-from scripts.ingestion.constants import INST_LOC,POPCON_TEXT,POPCON_CSV, REGEX
+from datetime import datetime
+from constants import INST_LOC,POPCON_TEXT,POPCON_CSV, REGEX
 
 x=datetime.now()
         
 def parse_line(line):
-    # Header format
-    # rank name inst vote old recent no-files (maintainer)
+    # Parse each line and return the values
     rank, name, inst, vote, old, recent, no_files, maintainer = \
         None, None, None, None, None, None, None, None
 
     line = line.strip()
-    # print(line)
+    # Extract the maintainer from the line
     try:
         rest, maintainer = line.split("(")
         maintainer = maintainer.replace(")","") # Replace 
@@ -22,14 +22,15 @@ def parse_line(line):
         print(line)
         print(e)
 
-    
+    # Replace separator in line with commas
     comma_divided = re.sub(REGEX, ",", rest)
     rank, name, inst, vote, old, recent, no_files, _ = \
             comma_divided.split(",")
-    # print(maintainer)
+
     return (rank, name, inst, vote, old, recent, no_files, maintainer)
 
 def parser():
+    # Check if local copy of file exists, otherwise download
     if os.path.exists(POPCON_TEXT):
         print("using local copy of the file")
     else:
@@ -46,6 +47,8 @@ def parser():
             o=csv.writer(fdout)
             data = data.split("\n")
             for line in data[:len(data)-3]:
+                
+                # Skip empty or commented lines
                 if len(line) < 1 or line[0]=='#':
                     continue
                 line = parse_line(line)

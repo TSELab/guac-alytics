@@ -3,9 +3,11 @@ import requests
 import os.path
 import re
 import csv
+import shutil
 from bs4 import BeautifulSoup as bs 
-from scripts.ingestion.constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX
-from scripts.ingestion.database.popcon_db_init import target_con
+from datetime import datetime,date
+from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX
+from database.popcon_db_init import target_con,conn,cursor
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
@@ -107,10 +109,10 @@ def parser():
                 maintainer=row[7]
                 y=datetime.strftime(x,"%m/%d/%Y")
                 # Updating the date if the number of votes of the package is changed
-                cur.execute('''UPDATE popularity_table SET date=(?) WHERE name=(?) and vote!=(?)''',(y,n,v))  
-                cur.execute(''' UPDATE popularity_table SET inst=(?), vote=(?), old=(?), recent=(?), no_files=(?), inst_norm=(?), vote_norm=(?) WHERE name=(?)''', (i,v,o,r,no,ia,va,n))          
+                cursor.execute('''UPDATE popularity_table SET date=(?) WHERE name=(?) and vote!=(?)''',(y,n,v))  
+                cursor.execute(''' UPDATE popularity_table SET inst=(?), vote=(?), old=(?), recent=(?), no_files=(?), inst_norm=(?), vote_norm=(?) WHERE name=(?)''', (i,v,o,r,no,ia,va,n))          
                 # Inserting new values into the table 
-                cur.execute('''INSERT OR REPLACE INTO popularity_table VALUES (?,?,?,?,?,?,?,?,?,?)''',(n,y,i,v,o,r,no,maintainer,ia,va))
+                cursor.execute('''INSERT OR REPLACE INTO popularity_table VALUES (?,?,?,?,?,?,?,?,?,?)''',(n,y,i,v,o,r,no,maintainer,ia,va))
                 conn.commit()
                 no_records += 1
                 if(no_records%25000==0):

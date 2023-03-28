@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 import sqlite3
-from scripts.ingestion.constants import DB_LOC
+from constants import DB_LOC
 
-def target_con(con):
-        conn = sqlite3.connect(con)
-        cur = conn.cursor()
-        return cur
+conn = sqlite3.connect(DB_LOC)
+cursor = conn.cursor()
 
 def db_init():
-        target_con(DB_LOC)
         cursor.execute("""CREATE TABLE IF NOT EXISTS popularity_table(
                 name text primary key,
                 date date,

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import csv
-import sqlite3
-from scripts.ingestion.constants import MAINTAINER_CSV_FILE
-from scripts.ingestion.database.maintainer_db_init import db_init
-from scripts.ingestion.parsers.maintainer_parser import parser
+from constants import MAINTAINER_CSV_FILE
+from database.maintainer_db_init import db_init,conn,cur
+from parsers.maintainer_parser import parser
 
 def init():
+    """ Inserting new values into the table """
     with open(MAINTAINER_CSV_FILE, 'r',encoding= 'unicode_escape') as file:
         data = csv.reader(file,delimiter=',')   
         no_records = 0 
@@ -16,18 +16,16 @@ def init():
                 o=row[4]
                 r=row[5]
                 no=row[6]
-                # Inserting new values into the table 
                 cur.execute('''INSERT OR REPLACE INTO maintainer VALUES (?,?,?,?,?,?)''',(n,i,v,o,r,no))
                 conn.commit()
                 no_records += 1
-                
 
         print(no_records, ' checked')
         print('Closing file')
 
 if __name__ == "__main__":
-        db_init()
-        parser()
-        init()
+        db_init() # Initialize the database
+        parser() # Parse the data
+        init() # Inserts the records into table
 
 conn.close()
