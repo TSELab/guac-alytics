@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import csv
-import sqlite3
+from constants import MAINTAINER_CSV_FILE
+from database.maintainer_db_init import db_init,conn,cur
+from parsers.maintainer_parser import parser
 
-conn = sqlite3.connect('/data/yellow/vineet/database/bi_multi_tables.db')
-cur = conn.cursor()
-
-def main():
-    with open('/data/yellow/vineet/python_files/new_scripts/database_creation/maintainer.csv', 'r',encoding= 'unicode_escape') as file:
+def init():
+    """ Inserting new values into the table """
+    with open(MAINTAINER_CSV_FILE, 'r',encoding= 'unicode_escape') as file:
         data = csv.reader(file,delimiter=',')   
         no_records = 0 
         for row in data:
@@ -16,14 +16,16 @@ def main():
                 o=row[4]
                 r=row[5]
                 no=row[6]
-                # Inserting new values into the table 
                 cur.execute('''INSERT OR REPLACE INTO maintainer VALUES (?,?,?,?,?,?)''',(n,i,v,o,r,no))
                 conn.commit()
                 no_records += 1
-                
 
         print(no_records, ' checked')
         print('Closing file')
 
-main()
+if __name__ == "__main__":
+        db_init() # Initialize the database
+        parser() # Parse the data
+        init() # Inserts the records into table
+
 conn.close()
