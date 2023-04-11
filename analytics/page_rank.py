@@ -31,7 +31,7 @@ def insert_into_md(top_nodes):
 
 
     data = myTable.get_string()
-    with open('plots/page_rank.md', 'w') as f:
+    with open('plots/pagerank.md', 'w') as f:
             f.write(data)
 
 # Define function to create directed graph and calculate Page Rank metric for each node
