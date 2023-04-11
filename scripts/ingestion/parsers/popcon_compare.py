@@ -7,13 +7,10 @@ import shutil
 from bs4 import BeautifulSoup as bs 
 from datetime import datetime,date
 from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX
-from database.popcon_db_init import target_con,conn,cursor
+from database.popcon_db_init import conn,cursor
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
-
-#Connecting to database
-target_con(DB_LOC)
 
 def parse_line(line):
     # Header format
@@ -90,7 +87,7 @@ def parser():
     day=date.today().day
 
     # Saving data of each day
-    shutil.copyfile(POPCON_CSV,'/data/yellow/vineet/raw_data/popularity_contest/{}/{}/{}'.format(year,mon,day))
+    shutil.copyfile(POPCON_CSV,'/data/yellow/guacalytics/raw_data/popularity_contest/{}/{}/{}'.format(year,mon,day))
 
     # Comparing the data from csv file and existing table and updating its values 
     with open(POPCON_CSV, 'r',encoding= 'unicode_escape') as file:

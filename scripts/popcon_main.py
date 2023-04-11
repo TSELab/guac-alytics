@@ -1,15 +1,14 @@
 import csv
 from datetime import datetime
-import sqlite3
-from database.popcon_db_init import db_init,conn,cursor
-from constants import POPCON_CSV
-from parsers.popcon_parser import parser
+from ingestion.database.popcon_db_init import db_init
+from ingestion.constants import DB_LOC,POPCON_TEXT
+from ingestion.parsers.popcon_parser import parser
 
-no_records = 0  
-def popcon():
-        with open(POPCON_CSV, 'r',encoding= 'unicode_escape') as file:
+def popcon(popcon_file):
+        with open(popcon_file, 'r',encoding= 'unicode_escape') as file:
                 data = csv.reader(file,delimiter=',')   
                 x=datetime.now()
+                no_records=0
                 for row in data:
                         name=row[1]
                         date=x
@@ -23,10 +22,11 @@ def popcon():
                         conn.commit()
                         no_records += 1
 
+        conn.close()
+        print ('\n{} records transferred'.format(no_records))  
+
 if __name__ == "__main__":
-        db_init()
-        parser()
-        popcon()
+        popcon_file = parser(POPCON_TEXT) # Parse the data
+        conn,cursor = db_init(DB_LOC) # Initialize the database
+        popcon(popcon_file) # Inserts the records into table
         
-conn.close()
-print ('\n{} records transferred'.format(no_records))  
