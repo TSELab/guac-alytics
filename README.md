@@ -109,3 +109,5 @@ The data is represented using an ER diagram, which can be edited [here](https://
 See these [slides](https://docs.google.com/presentation/d/1FKthyyVpaDAtYtiiHWIv-lM3RIYWilLE-Bn8NZQ6vEY/edit) to aid contextualize the project. This project may or may not eventually be an overlay over the guacsec code [see](https://github.com/guacsec/guac).
 
 Meeting agenda and notes on [this hackmd](https://hackmd.io/KV42bSFTS5iq1wAfkTX-ow).
+
+Check the drive for more information [here](https://drive.google.com/drive/folders/1Ea21f5vJiTSPFlk1ZRlN9q9ve8jGAyap?usp=sharing)
