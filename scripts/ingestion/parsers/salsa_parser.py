@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 #url of directory listings of packages
-# create a webdriver object and set options for headless browsing
+#create a webdriver object and set options for headless browsing
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 service = Service(executable_path=r'./chromedriver')
@@ -40,7 +40,7 @@ def remove_script(soup):
 
 
 # Get url of control file
-def is_valid_homepage(control_url,dir_url):
+def is_valid_control_file(control_url,dir_url):
     try:
         ret_url = urllib.request.urlopen(control_url).geturl() 
     except:
