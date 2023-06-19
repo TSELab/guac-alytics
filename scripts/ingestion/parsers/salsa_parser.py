@@ -7,11 +7,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 #url of directory listings of packages
-	# create a webdriver object and set options for headless browsing
-	options = webdriver.ChromeOptions()
-	options.add_argument('--headless')
-	service = Service(executable_path=r'./chromedriver')
-	driver = webdriver.Chrome(service=service,options=options)
+# create a webdriver object and set options for headless browsing
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+service = Service(executable_path=r'./chromedriver')
+driver = webdriver.Chrome(service=service,options=options)
 
 
 #uses webdriver object to execute javascript code and get dynamically loaded webcontent
