@@ -31,16 +31,9 @@ for res in result:
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
     for item in soup.find_all('link', {'href': True, 'rel': 'vcs-git'}):
-        repos.append(item['href'])
-print(repos)
-
-for repo in repos:
-    
-# if cannot clone repos (repos with errors), continue
-
-    try: 
-        os.mkdir(res)
-        print("cloning")
-        repo = git.Repo.clone_from(repo, to_path = res)
-    except OSError:
-        continue
+        try: 
+            os.mkdir(res)
+            print("cloning")
+            repo = git.Repo.clone_from(item['href'], to_path = res)
+        except OSError:
+            continue
