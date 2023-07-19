@@ -1,10 +1,10 @@
-from .headerparser import parser
-from .DB_parser import *
-from .snapshot_scraper import *
+from .publish_headerparser import parser
+from ..database.publish_db_init import *
+from .snapshot_download import *
 
 def parse_packagelist(date, ARCH, db_location, DFSG):
     con = open_db(db_location)
-    with open(f'./ingestion/publish_parsers/Packagelist_DUMP/{date}-{ARCH}-{DFSG}_Packages','r') as rf:
+    with open(f'./ingestion/parsers/Packagelist_DUMP/{date}-{ARCH}-{DFSG}_Packages','r') as rf:
         header = ""
         for line in rf:
             if line == "\n":
@@ -30,7 +30,7 @@ def parse_packagelist(date, ARCH, db_location, DFSG):
 
 def parse_dependencylist(date, ARCH, db_location, DFSG):
     con = open_db(db_location)
-    with open(f'./ingestion/publish_parsers/Packagelist_DUMP/{date}-{ARCH}-{DFSG}_Packages','r') as rf:
+    with open(f'./ingestion/parsers/Packagelist_DUMP/{date}-{ARCH}-{DFSG}_Packages','r') as rf:
         header = ""
         for line in rf:
             if line == "\n":

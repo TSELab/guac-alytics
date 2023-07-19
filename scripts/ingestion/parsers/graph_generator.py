@@ -2,7 +2,7 @@
 
 import networkx as nx
 from pyvis.network import Network
-from .headerparser import parser
+from .publish_headerparser import parser
 
 def CreateDependency_edges(filename, G):
     with open(filename,'r') as rf:
