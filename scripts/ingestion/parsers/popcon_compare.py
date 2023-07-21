@@ -6,7 +6,7 @@ import csv
 import shutil
 from bs4 import BeautifulSoup as bs 
 from datetime import datetime,date
-from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX
+from ..constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX
 from database.popcon_db_init import target_con,conn,cursor
 
 x=datetime.now()

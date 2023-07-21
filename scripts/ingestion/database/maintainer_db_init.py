@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sqlite3
-from constants import DB_LOC
+from ..constants import DB_LOC
 
 conn = sqlite3.connect(DB_LOC)
 cur = conn.cursor()

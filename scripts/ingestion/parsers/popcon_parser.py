@@ -4,7 +4,7 @@ import os
 import re
 import csv
 from datetime import datetime
-from constants import INST_LOC,POPCON_TEXT,POPCON_CSV, REGEX
+from ..constants import INST_LOC,POPCON_TEXT,POPCON_CSV, REGEX
 
 x=datetime.now()
         

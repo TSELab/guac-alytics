@@ -51,15 +51,6 @@ def init_db(location = LOCATION):
     conn.commit()
     conn.close()
 
-def open_db(location = LOCATION):
-    conn = sqlite3.connect(location)
-    return conn
-
-def close_db(conn = None):
-    if not conn:
-        raise Exception("I need a database handle to close!")
-    conn.close()
-
 INSERT_SOURCE = '''INSERT OR IGNORE INTO source_table (source_id,source_name,version) VALUES (null,?,?)'''
 INSERT_BUILD = '''INSERT OR IGNORE INTO buildinfo_table (buildinfo_id,source_id,type,build_origin,build_architecture,build_date,build_path,environment) VALUES (null,?,?,?,?,?,?,?)'''
 INSERT_BINARY = '''INSERT OR IGNORE INTO binary_table (binary_id,package,version,architecture) VALUES (null,?,?,?)'''

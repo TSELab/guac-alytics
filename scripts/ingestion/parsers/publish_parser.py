@@ -1,6 +1,6 @@
 from .publish_headerparser import parser
-from ..database.publish_db_init import *
-from .snapshot_download import *
+from ..database.publish_db_init import init_db, insert_package, insert_dependency
+from ..database.db_main import open_db, close_db
 
 def parse_packagelist(date, ARCH, db_location, DFSG):
     con = open_db(db_location)

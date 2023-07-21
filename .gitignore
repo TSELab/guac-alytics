@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Ignore packagelist metadata DUMP
-scripts/ingestion/parsers/Packagelist_DUMP/20*
+*.dump
 
 #Ignore db files
 *.db

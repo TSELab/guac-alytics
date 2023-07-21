@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import csv
-from constants import MAINTAINER_CSV_FILE
-from database.maintainer_db_init import db_init,conn,cur
-from parsers.maintainer_parser import parser
+from ingestion.constants import MAINTAINER_CSV_FILE
+from ingestion.database.maintainer_db_init import db_init,conn,cur
+from ingestion.parsers.maintainer_parser import parser
 
 def init():
     """ Inserting new values into the table """

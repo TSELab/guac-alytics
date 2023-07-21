@@ -34,14 +34,6 @@ def init_db(location):
     conn.commit()
     conn.close()
 
-def open_db(location):
-    conn = sqlite3.connect(location)
-    return conn
-
-def close_db(conn = None):
-    if not conn:
-        raise Exception("I need a database handle to close!")
-    conn.close()
 
 INSERT_PACKAGE = '''INSERT OR IGNORE INTO Publish_Packages (package, architecture, version, section, size, pool_endpoint, DFSG, added_at, md5sum, sha256, provided_by) VALUES (?,?,?,?,?,?,?,?,?,?,?)'''
 INSERT_DEPENDENCY = '''INSERT OR IGNORE INTO Publish_Dependencies (package_id, condition, dependency_package_id) VALUES (?,?,?)'''
