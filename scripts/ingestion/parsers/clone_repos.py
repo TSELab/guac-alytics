@@ -3,6 +3,14 @@ import os
 from bs4 import BeautifulSoup
 import requests
 import git
+from git import Repo
+import logging
+
+# logging repos that cannot be cloned
+
+logging.basicConfig(level = logging.INFO, filename = "loginfo.log", format = '%(asctime)s %(message)s', filemode = 'w')
+
+folder = '/data/yellow/guacalytics/raw_data/upstream_data/revised_data/clone_repos'
 
 # read from source_name in source_table 
 
@@ -24,16 +32,36 @@ conn.close()
 # build URL from source_name
 # clone all the repos 
 
-repos = []
 for res in result: 
     url = "https://tracker.debian.org/pkg/" + res
     print(url)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
     for item in soup.find_all('link', {'href': True, 'rel': 'vcs-git'}):
-        try: 
-            os.mkdir(res)
+        try:
             print("cloning")
-            repo = git.Repo.clone_from(item['href'], to_path = res)
+            repodir = os.path.join(os.path.abspath(folder), res)
+
+            # if repo exists, pull newest data 
+
+            if os.path.isdir(repodir):      
+                repo = Repo(repodir) 
+                repo.remotes.origin.pull()
+            else: 
+
+                # if repo not exists, clone the repos
+
+                repo = Repo.clone_from(item['href'], repodir)
+
+            # Getting the list of directories and check if empty
+
+            dir = os.listdir(repodir)
+
+            if len(dir) == 0:
+                logging.error("Empty directory " + res)
+
         except OSError:
-            continue
+            logging.error("OSError " + res)
+
+        except git.exc.GitCommandError:
+            logging.error("GitCommandError " + res)
