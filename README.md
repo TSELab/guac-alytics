@@ -98,7 +98,11 @@ The schema of our data is as follows:
 |--------|---------|--------|--------|------|--------|----------|
 | Debian Gnome Maintainers|libvaladoc-0.56-dev | 25913899|8685994|8352785|2749012|6126108|
 
+**vulnerability_table**
 
+| source_id (integer) | package (varchar) | vulnerability (varchar) | description (varchar) | published_date (datetime) | last_modified_date (datetime) | debianbug (integer) | scope (varchar) | releases (varchar) |
+|--------|---------|--------|--------|------|--------|----------|--------|----------|
+| 13928|zziplib|CVE-2020-18442|Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".|06/18/2021|02/22/2022|None|local|{'bookworm': {'status': 'resolved', 'repositories': {'bookworm': '0.13.72+dfsg.1-1.1'}, 'fixed_version': '0.13.72+dfsg.1-1', 'urgency': 'not yet assigned'}} |
 
 The data is represented using an ER diagram, which can be edited [here](https://lucid.app/lucidchart/78e7ef88-3d4d-45de-8b48-703ac1b3007a/edit?viewport_loc=-2%2C-9%2C2444%2C1159%2C0_0&invitationId=inv_5f98e40f-8227-4f62-8064-fb249b491d2b).
 
