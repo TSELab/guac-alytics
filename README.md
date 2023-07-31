@@ -102,7 +102,8 @@ The schema of our data is as follows:
 
 The data is represented using an ER diagram, which can be edited [here](https://lucid.app/lucidchart/78e7ef88-3d4d-45de-8b48-703ac1b3007a/edit?viewport_loc=-2%2C-9%2C2444%2C1159%2C0_0&invitationId=inv_5f98e40f-8227-4f62-8064-fb249b491d2b).
 
-![ER_diagram](https://user-images.githubusercontent.com/71808684/226646097-15079b0f-2821-4378-a5ac-4468caa162a0.png)
+![ER diagram](https://github.com/TSELab/guac-alytics/assets/71808684/66ffcb3e-e541-4e63-878c-5a00d7c6b752)
+
 
 ## Other information
 
