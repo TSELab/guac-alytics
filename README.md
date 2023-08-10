@@ -60,11 +60,17 @@ For example
 
 The schema of our data is as follows:
 
+**upstream_data:**
+
+| sno (Integer) \<PK> | Source (varchar) | Maintainer (varchar) | Uploaders (varchar) | Section (varchar) | Priority (varchar) | Build_Depends (varchar) | Build_Depends_Indep (varchar) | Standards_Version (varchar) | Vcs_Browser (varchar) | Vcs_Git (varchar) | Homepage (varchar) | Rules_Requires_Root (varchar) | Package (varchar) | Architecture (varchar) | Multi_Arch (varchar) | Depends (varchar) | Description (varchar) |
+|--------|---------|--------|--------|--------|---------|--------|--------|--------|---------|--------|--------|--------|---------|--------|--------|--------|---------|
+|1|cinnamon-session|Debian Cinnamon Team <debian-cinnamon@lists.debian.org>| Maximiliano Curia <maxy@debian.org>, Margarita Manterola <marga@debian.org>, Fabio Fantoni <fantonifabio@tiscali.it>, Norbert Preining <norbert@preining.info>, Joshua Peisach <itzswirlz2020@outlook.com>, Christoph Martin <martin@uni-mainz.de>|x11|optional| debhelper-compat (= 13), gnome-pkg-tools, intltool, libcanberra-dev, libgl-dev, libglib2.0-dev, libgtk-3-dev, libice-dev, libjson-glib-dev, libsm-dev, libsystemd-dev [linux-any], libupower-glib-dev, libx11-dev, libxapp-dev, libxau-dev, libxcomposite-dev, libxext-dev, libxrender-dev, libxt-dev, libxtst-dev, meson, xtrans-dev,||4.6.2|https://salsa.debian.org/cinnamon-team/cinnamon-session|https://salsa.debian.org/cinnamon-team/cinnamon-session.git -b experimental|http://cinnamon.linuxmint.com|no|cinnamon-session-common|all|foreign|${misc:Depends}|Cinnamon Session Manager - common files The Cinnamon Session Manager is in charge of starting the core components of the Cinnamon desktop, and applications that should be launched at login time.|
+
 **source_table:**
 
 | source_id (Integer) \<PK> | source_name (varchar)   | version (varchar)    | location (varchar) | 
 |--------|---------|--------|--------|
-1|maxima|5.42.0-1|
+| 1|maxima|5.42.0-1|
 
 **buildinfo_table:**
 | buildinfo_id (Integer) \<PK> | source_id (Integer) \<FK> | type (varchar) | build_origin (varchar) | build_architecture (varchar)    |  build_date (datetime) | build_path (varchar) | environment (varchar)|
