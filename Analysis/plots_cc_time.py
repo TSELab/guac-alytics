@@ -62,7 +62,7 @@ def build_plots(timestamps, cc):
     plt.ylabel('Frequency')
     plt.title('Distribution of Cyclomatic Complexity')
     plt.tight_layout()
-    plt.savefig('/data/yellow/guacalytics/python_files/Analysis/cc.png')
+    plt.savefig('/data/yellow/guacalytics/python_files/Analysis/cyclomatic_complexity.png')
 
 if __name__ == "__main__":
     md_file = '/data/yellow/guacalytics/python_files/Analysis/radon_results.md'
