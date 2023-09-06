@@ -2,6 +2,7 @@ import os
 from bs4 import BeautifulSoup as bs 
 import requests
 import time
+from constants import LOC, BUILDINFO
          
 years = ['2017','2018','2019' ,'2020', '2021', '2022', '2023']  # Add more years if needed
 months = {'01': 31, '02': 28, '03': 31, '04': 30, '05': 31, '06': 30,
@@ -12,10 +13,11 @@ for year in years:
     for month in months.keys():
         for day in range(1, months[month] + 1):
             day_str = str(day).zfill(2)  # Add leading zero for single-digit days
-
-            os.chdir(f'/data/yellow/guacalytics/raw_data/buildinfo_data/{year}/{month}/{day_str}')
+            directory_path = f'{LOC}/{year}/{month}/{day_str}'
+            os.chdir(directory_path)
             time.sleep(5)
-            url = f'https://buildinfos.debian.net/ftp-master.debian.org/buildinfo/{year}/{month}/{day_str}/'
+            
+            url = f'{BUILDINFO}/{year}/{month}/{day_str}'
             
             page = requests.get(url)
 
