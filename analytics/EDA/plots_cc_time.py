@@ -52,7 +52,7 @@ def build_plots(timestamps, cc):
     plt.ylabel('Frequency')
     plt.title('Distribution of Timestamps')
     plt.tight_layout()
-    plt.savefig('/data/yellow/guacalytics/python_files/Analysis/timestamps.png')
+    plt.savefig('timestamps.png')
 
     # Plot distribution for cyclomatic complexity
     plt.figure(figsize=(25,20))
@@ -62,9 +62,9 @@ def build_plots(timestamps, cc):
     plt.ylabel('Frequency')
     plt.title('Distribution of Cyclomatic Complexity')
     plt.tight_layout()
-    plt.savefig('/data/yellow/guacalytics/python_files/Analysis/cyclomatic_complexity.png')
+    plt.savefig('cyclomatic_complexity.png')
 
 if __name__ == "__main__":
-    md_file = '/data/yellow/guacalytics/python_files/Analysis/radon_results.md'
+    md_file = 'radon_results.md' #Add path of your results file here
     timestamp, cc = fetch_data_from_md(md_file)
     build_plots(timestamp, cc)

@@ -76,8 +76,8 @@ def run_radon_cc(repo_path):
 if __name__ == "__main__":
 
     myTable = PrettyTable([" Package "," Tag ", " Timestamp "," Cyclomatic Complexity "," Licenses "])
-    repositories_path = "/data/yellow/guacalytics/raw_data/upstream_clones/clone_repos"
-    output_file = '/data/yellow/guacalytics/python_files/Analysis/radon_results.md'
+    repositories_path = "/data/yellow/guacalytics/raw_data/upstream_clones/clone_repos" # Add path of your cloned repositories
+    output_file = '/data/yellow/guacalytics/python_files/Analysis/radon_results.md' #Add path of your file where you want the results to be stored
     
     start = 0
     end = 1000 

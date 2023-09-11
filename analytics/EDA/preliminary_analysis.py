@@ -77,7 +77,7 @@ def count_lines_of_code(repo_path):
 if __name__ == "__main__":
     print(datetime.now())
     t_in = time.time()
-    repositories_path = "/data/yellow/guacalytics/raw_data/upstream_clones/clone_repos"
+    repositories_path = "/data/yellow/guacalytics/raw_data/upstream_clones/clone_repos" # Add path of your cloned repositories
 
     myTable = PrettyTable(["Package "," Tag "," loc "," Versions Compared "," lines added "," lines deleted "," languages "," build depends "," depends "," patch files "])
     counter = 0
@@ -106,7 +106,7 @@ if __name__ == "__main__":
                     i+=1
 
     data = myTable.get_string()
-    with open('/data/yellow/guacalytics/python_files/Analysis/complexity.md', 'w') as f:
+    with open('/data/yellow/guacalytics/python_files/Analysis/complexity.md', 'w') as f: #Add path of your file where you want the results to be stored
         f.write(data)
             
     t_out = time.time()
