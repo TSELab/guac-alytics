@@ -98,6 +98,16 @@ The schema of our data is as follows:
 |--------|---------|--------|--------|------|--------|----------|
 | Debian Gnome Maintainers|libvaladoc-0.56-dev | 25913899|8685994|8352785|2749012|6126108|
 
+**publish_packages:**
+| Package_id |   Package   | Architecture |      Version       | Section  |  Size  |                         pool_endpoint                          | DFSG |     Added_at     |              MD5sum              |                   SHA1                   |                              SHA256                              | Provided_by |
+|------------|-------------|--------------|--------------------|----------|--------|----------------------------------------------------------------|------|------------------|----------------------------------|------------------------------------------|------------------------------------------------------------------|-------------|
+| 18221      | imagemagick | amd64        | 8:6.8.9.9-5+deb8u4 | graphics | 156996 | pool/main/i/imagemagick/imagemagick_6.8.9.9-5+deb8u4_amd64.deb | main | 20161231T000000Z | c2cedf60dbc3d6f794fe78fb6d5fbe10 | 82eaef39fe894cf7ca829f3080c445d7e59d4285 | 54ca108d2b61a50dfeaaef1ff3315e52bdd47bb1da1f731c02f2c4b7baf19992 |             |
+
+**publish_dependencies:**
+| Dependency_id | Package_id | Dependency_package_id |          Condition          |
+|---------------|------------|-----------------------|-----------------------------|
+| 5             | 1          | 2359                  | libboost-filesystem1.55.0   |
+
 
 
 The data is represented using an ER diagram, which can be edited [here](https://lucid.app/lucidchart/78e7ef88-3d4d-45de-8b48-703ac1b3007a/edit?viewport_loc=-2%2C-9%2C2444%2C1159%2C0_0&invitationId=inv_5f98e40f-8227-4f62-8064-fb249b491d2b).

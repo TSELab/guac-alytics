@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore packagelist metadata DUMP
+*.dump
+
+#Ignore db files
+*.db
+*.db-journal

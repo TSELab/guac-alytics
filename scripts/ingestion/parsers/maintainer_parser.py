@@ -3,7 +3,7 @@ import requests
 import os.path
 import re
 import csv
-from constants import REGEX, MAINTAINER_TEXT_FILE, MAINTAINER_CSV_FILE, MAINTAINER_INST_LOC
+from ..constants import REGEX, MAINTAINER_TEXT_FILE, MAINTAINER_CSV_FILE, MAINTAINER_INST_LOC
 
 # Define the function to parse each line of the file
 def parse_line(line):

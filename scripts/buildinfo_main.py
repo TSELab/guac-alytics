@@ -3,7 +3,8 @@ import headerparser
 import os
 import re
 from calendar import monthrange
-from database.buildinfo_db_init import open_db, init_db, close_db, insert_build
+from ingestion.database.buildinfo_db_init import init_db, insert_build
+from ingestion.database.db_main import open_db, close_db
 import progressbar
 from dateutil.parser import parse as du_parse
 
