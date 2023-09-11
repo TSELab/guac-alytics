@@ -4,6 +4,7 @@ import sqlite3
 import time
 import matplotlib.pyplot as plt
 import networkx as nx
+from constants import DB_LOC, GRAPH_DATES
 
 days = [k for k in range(1,70)]
 
@@ -17,9 +18,9 @@ def build_plot(CUR, before):
     plt.title("Monthly evolution of top-10 packages")
     plt.legend(loc="upper left")
     plt.xlabel("Monthly Increment")
-    plt.ylabel("In-degree")
+    plt.ylabel("Out-degree")
     plt.tight_layout()
-    plt.savefig('plots/evolve_in.png')
+    plt.savefig('plots/evolve_out.png')
 
 
 def monthly(CUR, before):
@@ -31,30 +32,21 @@ def monthly(CUR, before):
     monthly_track = {}
     for pack in high_packages.keys():
         monthly_track[pack] = []
-    
-    # Loop through each month and calculate the in-degree of each package
+    # Loop through each month and calculate the out-degree of each package
     for cm in com:
         # Calculate the date range for the current month
         after = datetime.datetime(year=cm[0], month=cm[1], day=1) - datetime.timedelta(seconds=1)
         G = nx.DiGraph()
-        query = '''
-            SELECT s.source_name||'_'||s.version||'_'||bi.type, 
-                b.package||'_'||b.version||'_'||b.architecture
-            FROM dependency_table d 
-            JOIN buildinfo_table bi ON bi.buildinfo_id = d.buildinfo_id
-            JOIN source_table s ON s.source_id = bi.source_id
-            JOIN binary_table b ON b.binary_id = d.binary_id
-            WHERE bi.build_date BETWEEN '{}' AND '{}'
-            '''.format(before, after)
+        query = GRAPH_DATES.format(before, after)
 
         CUR.execute(query)
         items = CUR.fetchall()
 
         G.add_edges_from(items)
-         # Calculate the in-degree of each package and add it to the monthly data
+        # Calculate the out-degree of each package and add it to the monthly data
         for pack in monthly_track.keys():
             if pack in G.nodes():
-                monthly_track[pack].append(G.in_degree(pack))
+                monthly_track[pack].append(G.out_degree(pack))
             else:
                 monthly_track[pack].append(0)
         print(after)
@@ -64,30 +56,21 @@ def monthly(CUR, before):
 def top_10(CUR, before):
     # Calculate the date range for the month
     after = datetime.datetime(year=2022, month=10, day=1) - datetime.timedelta(seconds=1)
-    query = '''
-    SELECT s.source_name||'_'||s.version||'_'||bi.type, 
-        b.package||'_'||b.version||'_'||b.architecture
-    FROM dependency_table d 
-    JOIN buildinfo_table bi ON bi.buildinfo_id = d.buildinfo_id
-    JOIN source_table s ON s.source_id = bi.source_id
-    JOIN binary_table b ON b.binary_id = d.binary_id
-    WHERE bi.build_date BETWEEN '{}' AND '{}'
-    '''.format(before, after)
+    query = GRAPH_DATES.format(before, after)
 
     CUR.execute(query)
     items = CUR.fetchall()
 
     G = nx.DiGraph()
     G.add_edges_from(items)
-
-    # Find the top 10 packages by in-degree
-    nodes_sorted_by_degree = sorted(G.nodes, key=G.in_degree, reverse=True)
+     # Find the top 10 packages by out-degree
+    nodes_sorted_by_degree = sorted(G.nodes, key=G.out_degree, reverse=True)
     top_degree_nodes = nodes_sorted_by_degree[:10]
 
     high_packages = {}
     # Add the top 10 packages and their in-degree to a dictionary
     for i in top_degree_nodes:
-        high_packages[i] = G.in_degree(i)
+        high_packages[i] = G.out_degree(i)
 
     print('high packages:', high_packages)
     return high_packages
@@ -96,7 +79,7 @@ def top_10(CUR, before):
 if __name__ == "__main__":
     
     t_in = time.time()
-    CONN = sqlite3.connect('/data/yellow/guacalytics/database/bi_multi_tables.db')
+    CONN = sqlite3.connect(DB_LOC)
     CUR = CONN.cursor()
     before = datetime.datetime(year=2017, month=1, day=1)
     build_plot(CUR,before)

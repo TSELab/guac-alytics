@@ -1,12 +1,12 @@
 import sqlite3
 import networkx as nx
-import matplotlib.pyplot as plt      #Plot
+import matplotlib.pyplot as plt    
 import statistics
 import time
 import datetime
 import numpy as np
 import math
-
+from constants import DB_LOC, GRAPH_DATES
 
 def create_plot(days, data, title, xlabel, ylabel, legend_labels=None, save_path=None, figsize=None, annotate=None):
     """
@@ -55,7 +55,7 @@ def create_plot(days, data, title, xlabel, ylabel, legend_labels=None, save_path
     plt.close()
 
 
-def compute_statisctics(degree_sequence,G):
+def compute_statistics(degree_sequence,G):
     """
     Computes statistics (mean, median, percentile, standard deviation) for a given degree sequence.
 
@@ -68,7 +68,7 @@ def compute_statisctics(degree_sequence,G):
     median_list.append(math.log(statistics.median(degree_sequence)) if statistics.median(degree_sequence) != 0 else 0.0)
     std_dev_list.append(math.log(np.std(degree_sequence)) if np.std(degree_sequence) != 0 else 0.0)
     max_list.append(max(degree_sequence))
-    highest_degree_node.append(max(G.nodes, key=G.out_degree) if len(G.nodes()) != 0 else 0.0)
+    highest_degree_node.append(max(G.nodes, key=G.in_degree) if len(G.nodes()) != 0 else 0.0)
     perc_25_list.append(math.log(np.percentile(degree_sequence, 25)) if np.percentile(degree_sequence, 25) != 0 else 0.0)
     perc_75_list.append(math.log(np.percentile(degree_sequence, 75)) if np.percentile(degree_sequence, 75) != 0 else 0.0)
     
@@ -78,14 +78,7 @@ def build_graph():
     Builds a directed graph for each time interval specified by DATE1 and DATE2 and computes in-degree statistics for the graph.
     """
     for i in range(len(days)):
-        query = ''' SELECT s.source_name||'_'||s.version||'_'||bi.type, 
-                b.package||'_'||b.version||'_'||b.architecture
-            FROM dependency_table d 
-            JOIN buildinfo_table bi ON bi.buildinfo_id = d.buildinfo_id
-            JOIN source_table s ON s.source_id = bi.source_id
-            JOIN binary_table b ON b.binary_id = d.binary_id
-            WHERE bi.build_date BETWEEN '{}' AND '{}'
-            '''.format(date1[i], date2[i])
+        query = GRAPH_DATES.format(date1[i], date2[i])
 
         cur.execute(query)
         items = cur.fetchall()
@@ -96,11 +89,11 @@ def build_graph():
         if len(G.nodes()) == 0:
             degree_sequence = [0]
         else:
-            degree_sequence = [G.out_degree(n) for n in G.nodes]
+            degree_sequence = [G.in_degree(n) for n in G.nodes]
         
-        compute_statisctics(degree_sequence,G)
+        compute_statistics(degree_sequence,G)
  
-    
+
 if __name__ == '__main__':
     t_in = time.time()
     days = [k for k in range(1,24)]
@@ -120,27 +113,27 @@ if __name__ == '__main__':
     date2 = [before + datetime.timedelta(days=int(num*i)) for i in range(1,len(days)+1)]
     date1=[before + datetime.timedelta(days=int(num*i)) for i in range(len(days))]
 
-    conn = sqlite3.connect('/data/yellow/guacalytics/database/bi_multi_tables.db')
+    conn = sqlite3.connect(DB_LOC)
     cur = conn.cursor()
 
     build_graph()
 
     # Plot 1
     data = {"25th percentile": perc_25_list, "median": median_list, "75th percentile": perc_75_list, "mean": mean_list, "max. degree value": max_list}
-    create_plot(days, data, "Out-degree Statistical measures(log) for all source architectures", "quarterly tracking", "Statistical Measures ", annotate=None, save_path='plots/stat_out.png')
+    create_plot(days, data, "In-degree Statistical measures(log) for all source architectures", "quarterly tracking", "Statistical Measures ", annotate=None, save_path='plots/stat_in.png')
 
     # Plot 2
-    data = {"max out-degree": max_list}
-    create_plot(days, data, "Max Out-degree tracking for all source architectures", "quarterly tracking", "In-degree", legend_labels=["max out-degree"], annotate=dict(zip(days, highest_degree_node)), save_path='plots/max_out.png')
+    data = {"max in-degree": max_list}
+    create_plot(days, data, "Max In-degree tracking for all source architectures", "quarterly tracking", "In-degree", legend_labels=["max in-degree"], annotate=dict(zip(days, highest_degree_node)), save_path='plots/max_in.png')
 
     # Plot 3
     data = {"mean": mean_list}
     annotations = {day: txt for day, txt in zip(days, std_dev_list)}
-    create_plot(days, data, "Mean Out-degree and Std. deviation for all source architectures", "quarterly tracking", "Mean Out-degree(log) and Standard Deviation", legend_labels=["mean", "std. dev"], data_kwargs=dict(yerr=std_dev_list), annotate=annotations, save_path='plots/mean_out.png')
+    create_plot(days, data, "Mean In-degree and Std. deviation for all source architectures", "quarterly tracking", "Mean In-degree(log) and Standard Deviation", legend_labels=["mean", "std. dev"], data_kwargs=dict(yerr=std_dev_list), annotate=annotations, save_path='plots/mean_in.png')
 
     # Plot 4
     data = {"std. deviation": std_dev_list}
-    create_plot(days, data, "Std. deviation (log)", "quarterly tracking", "Standard deviation", annotate=None, save_path='plots/std_out.png')
+    create_plot(days, data, "Std. deviation (log)", "quarterly tracking", "Standard deviation", annotate=None, save_path='plots/std_in.png')
 
     conn.close()
     t_out = time.time()

@@ -2,6 +2,7 @@ import sqlite3
 import networkx as nx
 import time
 from prettytable import PrettyTable
+from constants import DB_LOC, CONSTRUCT_GRAPH
 
 def get_top_packages():
     """
@@ -9,14 +10,7 @@ def get_top_packages():
     then sorts them to get the top ones. Returns two lists of top packages and their degrees.
     """
     G = nx.DiGraph()
-    query = '''
-        SELECT s.source_name||'_'||s.version||'_'||bi.type, 
-            b.package||'_'||b.version||'_'||b.architecture
-        FROM dependency_table d 
-        JOIN buildinfo_table bi ON bi.buildinfo_id = d.buildinfo_id
-        JOIN source_table s ON s.source_id = bi.source_id
-        JOIN binary_table b ON b.binary_id = d.binary_id '''
-
+    query = CONSTRUCT_GRAPH
     CUR.execute(query)
     items = CUR.fetchall()
 
@@ -51,7 +45,7 @@ def write_to_file(table_data, file_name):
 
 if __name__ == "__main__":
     t_in = time.time()
-    CONN = sqlite3.connect('/data/yellow/guacalytics/database/bi_multi_tables.db')
+    CONN = sqlite3.connect(DB_LOC)
     CUR = CONN.cursor()
 
     # Get the top packages based on in-degree and out-degree

@@ -2,19 +2,13 @@ import sqlite3
 import networkx as nx
 from prettytable import PrettyTable
 import time
+from constants import DB_LOC, CONSTRUCT_GRAPH
 
 # Define function to retrieve edge data from SQLite database
 def get_edge_data():
-    conn = sqlite3.connect('/data/yellow/guacalytics/database/bi_multi_tables.db')
+    conn = sqlite3.connect(DB_LOC)
     cursor = conn.cursor()
-    query = '''
-        SELECT s.source_name||'_'||s.version||'_'||bi.type, 
-            b.package||'_'||b.version||'_'||b.architecture
-        FROM dependency_table d 
-        JOIN buildinfo_table bi ON bi.buildinfo_id = d.buildinfo_id
-        JOIN source_table s ON s.source_id = bi.source_id
-        JOIN binary_table b ON b.binary_id = d.binary_id'''
-
+    query = CONSTRUCT_GRAPH
     cursor.execute(query)
     items = cursor.fetchall()
     conn.close()

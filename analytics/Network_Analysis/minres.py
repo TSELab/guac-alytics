@@ -3,6 +3,7 @@ import networkx as nx
 import cpnet
 import time
 import matplotlib.pyplot as plt
+from constants import DB_LOC, CONSTRUCT_GRAPH
 
 def get_edge_data(database_path):
     """
@@ -16,14 +17,7 @@ def get_edge_data(database_path):
     """
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
-    query = '''
-        SELECT s.source_name||'_'||s.version||'_'||bi.type, 
-            b.package||'_'||b.version||'_'||b.architecture
-        FROM dependency_table d 
-        JOIN buildinfo_table bi ON bi.buildinfo_id = d.buildinfo_id
-        JOIN source_table s ON s.source_id = bi.source_id
-        JOIN binary_table b ON b.binary_id = d.binary_id'''
-
+    query = CONSTRUCT_GRAPH
     cursor.execute(query)
     items = cursor.fetchall()
     conn.close()
@@ -83,7 +77,7 @@ def plot_results(n, t):
 # Main program
 if __name__ == '__main__':
     t1 = time.time()
-    items = get_edge_data('/data/yellow/guacalytics/database/bi_multi_tables.db')
+    items = get_edge_data(DB_LOC)
     results = run_minres(items, 20)
     plot_results(results[0], results[1])
     t2 = time.time()
