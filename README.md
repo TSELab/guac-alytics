@@ -60,11 +60,17 @@ For example
 
 The schema of our data is as follows:
 
+**upstream_table:**
+
+| Source (varchar) | Maintainer (varchar) | Uploaders (varchar) | Section (varchar) | Priority (varchar) | Build_Depends (varchar) | Build_Depends_Indep (varchar) | Standards_Version (varchar) | Vcs_Browser (varchar) | Vcs_Git (varchar) | Homepage (varchar) | Rules_Requires_Root (varchar) | Package (varchar) | Architecture (varchar) | Multi_Arch (varchar) | Depends (varchar) | Description (varchar) |
+|---------|--------|--------|--------|---------|--------|--------|--------|---------|--------|--------|--------|---------|--------|--------|--------|---------|
+|cinnamon-session|Debian Cinnamon Team <debian-cinnamon@lists.debian.org>| Maximiliano Curia <maxy@debian.org>, Margarita Manterola <marga@debian.org>, Fabio Fantoni <fantonifabio@tiscali.it>, Norbert Preining <norbert@preining.info>, Joshua Peisach <itzswirlz2020@outlook.com>, Christoph Martin <martin@uni-mainz.de>|x11|optional| debhelper-compat (= 13), gnome-pkg-tools, intltool, libcanberra-dev, libgl-dev, libglib2.0-dev, libgtk-3-dev, libice-dev, libjson-glib-dev, libsm-dev, libsystemd-dev [linux-any], libupower-glib-dev, libx11-dev, libxapp-dev, libxau-dev, libxcomposite-dev, libxext-dev, libxrender-dev, libxt-dev, libxtst-dev, meson, xtrans-dev,||4.6.2|https://salsa.debian.org/cinnamon-team/cinnamon-session|https://salsa.debian.org/cinnamon-team/cinnamon-session.git -b experimental|http://cinnamon.linuxmint.com|no|cinnamon-session-common|all|foreign|${misc:Depends}|Cinnamon Session Manager - common files The Cinnamon Session Manager is in charge of starting the core components of the Cinnamon desktop, and applications that should be launched at login time.|
+
 **source_table:**
 
 | source_id (Integer) \<PK> | source_name (varchar)   | version (varchar)    | location (varchar) | 
 |--------|---------|--------|--------|
-1|maxima|5.42.0-1|
+| 1|maxima|5.42.0-1|
 
 **buildinfo_table:**
 | buildinfo_id (Integer) \<PK> | source_id (Integer) \<FK> | type (varchar) | build_origin (varchar) | build_architecture (varchar)    |  build_date (datetime) | build_path (varchar) | environment (varchar)|
@@ -98,14 +104,21 @@ The schema of our data is as follows:
 |--------|---------|--------|--------|------|--------|----------|
 | Debian Gnome Maintainers|libvaladoc-0.56-dev | 25913899|8685994|8352785|2749012|6126108|
 
+**vulnerability_table**
 
+| source_id (integer) | package (varchar) | vulnerability (varchar) | description (varchar) | published_date (datetime) | last_modified_date (datetime) | debianbug (integer) | scope (varchar) | releases (varchar) |
+|--------|---------|--------|--------|------|--------|----------|--------|----------|
+| 13928|zziplib|CVE-2020-18442|Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".|06/18/2021|02/22/2022|None|local|{'bookworm': {'status': 'resolved', 'repositories': {'bookworm': '0.13.72+dfsg.1-1.1'}, 'fixed_version': '0.13.72+dfsg.1-1', 'urgency': 'not yet assigned'}} |
 
 The data is represented using an ER diagram, which can be edited [here](https://lucid.app/lucidchart/78e7ef88-3d4d-45de-8b48-703ac1b3007a/edit?viewport_loc=-2%2C-9%2C2444%2C1159%2C0_0&invitationId=inv_5f98e40f-8227-4f62-8064-fb249b491d2b).
 
-![ER_diagram](https://user-images.githubusercontent.com/71808684/226646097-15079b0f-2821-4378-a5ac-4468caa162a0.png)
+![ER diagram](https://github.com/TSELab/guac-alytics/assets/71808684/66ffcb3e-e541-4e63-878c-5a00d7c6b752)
+
 
 ## Other information
 
 See these [slides](https://docs.google.com/presentation/d/1FKthyyVpaDAtYtiiHWIv-lM3RIYWilLE-Bn8NZQ6vEY/edit) to aid contextualize the project. This project may or may not eventually be an overlay over the guacsec code [see](https://github.com/guacsec/guac).
 
 Meeting agenda and notes on [this hackmd](https://hackmd.io/KV42bSFTS5iq1wAfkTX-ow).
+
+Check the drive for more information [here](https://drive.google.com/drive/folders/1Ea21f5vJiTSPFlk1ZRlN9q9ve8jGAyap?usp=sharing)
