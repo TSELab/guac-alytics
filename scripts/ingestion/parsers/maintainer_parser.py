@@ -25,18 +25,18 @@ def parse_line(line):
     return (rank, name, inst, vote, old, recent, no_files)
 
 # Define the main parser function
-def parser():
+def parser(textfile = MAINTAINER_TEXT_FILE):
     # Check if the file exists locally, if not, download it
-    if os.path.exists(MAINTAINER_TEXT_FILE):
+    if os.path.exists(textfile):
         print("Using local copy of the file.")
     else:
         print("Downloading file.")
         response = requests.get(MAINTAINER_INST_LOC)
-        with open(MAINTAINER_TEXT_FILE, "wt") as fp:
+        with open(textfile, "wt") as fp:
             fp.write(response.text)
 
     # Read the file and convert it to a CSV format
-    with open(MAINTAINER_TEXT_FILE, "rt") as fp, open(MAINTAINER_CSV_FILE,'w', encoding="utf-8",newline='') as fdout:
+    with open(textfile, "rt") as fp, open(MAINTAINER_CSV_FILE,'w', encoding="utf-8",newline='') as fdout:
         # Initialize the CSV writer and write the header row
         wr = csv.DictWriter(fdout, fieldnames=['rank','name', 'inst', 'vote', 'old', 'recent', 'no_files'], extrasaction='ignore')
         wr.writeheader()
@@ -50,3 +50,9 @@ def parser():
             # Parse the line and write it to the CSV file
             parsed_line = parse_line(line)
             wr.writerow(dict(zip(['rank','name', 'inst', 'vote', 'old', 'recent', 'no_files'], parsed_line)))
+
+    fp.close()
+    fdout.close()
+    os.remove(textfile)
+    file = open(MAINTAINER_CSV_FILE, "r")
+    return file

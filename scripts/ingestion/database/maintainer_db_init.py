@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-import sqlite3
 from constants import DB_LOC
+import sqlite3
 
-conn = sqlite3.connect(DB_LOC)
-cur = conn.cursor()
-
-def db_init():
-        cur.execute("""CREATE TABLE IF NOT EXISTS maintainer(
+def db_init(location=DB_LOC):
+        conn = sqlite3.connect(location)
+        cursor = conn.cursor()
+        cursor.execute("""CREATE TABLE IF NOT EXISTS maintainer(
                 name text primary key,
                 inst integer,
                 vote integer,
@@ -14,4 +13,4 @@ def db_init():
                 recent integer,
                 no_files integer
                 )""") 
-
+        return conn,cursor

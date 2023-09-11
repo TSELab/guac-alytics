@@ -2,10 +2,9 @@
 import sqlite3
 from constants import DB_LOC
 
-conn = sqlite3.connect(DB_LOC)
-cursor = conn.cursor()
-
-def db_init():
+def db_init(location=DB_LOC):
+        conn = sqlite3.connect(location)
+        cursor = conn.cursor()
         cursor.execute("""CREATE TABLE IF NOT EXISTS popularity_table(
                 name text primary key,
                 date date,
@@ -18,3 +17,5 @@ def db_init():
                 inst_norm varchar,
                 vote_norm varchar
                 )""") 
+
+        return conn,cursor

@@ -3,7 +3,8 @@ import headerparser
 import os
 import re
 from calendar import monthrange
-from database.buildinfo_db_init import open_db, init_db, close_db, insert_build
+from ingestion.database.buildinfo_db_init import open_db, init_db, close_db, insert_build
+from ingestion.constants import LOC,DB_LOC
 import progressbar
 from dateutil.parser import parse as du_parse
 
@@ -173,9 +174,7 @@ def populate_db(location, db_location):
 
     
 if __name__ == "__main__":
-    location = '/data/yellow/vineet/raw_data/buildinfo_data'
-    db_location = '/data/yellow/vineet/database/bi_multi_tables.db'
-    init_db(db_location)  # Initializing the database
-    populate_db(location, db_location)    # Populating the data
+    init_db(DB_LOC)  # Initializing the database
+    populate_db(LOC, DB_LOC)    # Populating the data
     t_out = time.time()
     print('Program run time in seconds:', t_out - t_in, '(s)')

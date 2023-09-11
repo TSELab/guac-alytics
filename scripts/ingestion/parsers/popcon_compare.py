@@ -6,14 +6,11 @@ import csv
 import shutil
 from bs4 import BeautifulSoup as bs 
 from datetime import datetime,date
-from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX
-from database.popcon_db_init import target_con,conn,cursor
+from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX,POPCON_DATA,POPCON
+from database.popcon_db_init import conn,cursor
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
-
-#Connecting to database
-target_con(DB_LOC)
 
 def parse_line(line):
     # Header format
@@ -38,8 +35,7 @@ def parse_line(line):
     return (rank, name, inst, vote, old, recent, no_files, maintainer)
 
 def parser():
-    url1 = 'https://popcon.debian.org'
-    page1 = requests.get(url1)
+    page1 = requests.get(POPCON)
     data1 = bs(page1.content,"html.parser")
     value = data1.find('td',class_='stats-cell')
     d = str(value)
@@ -88,9 +84,9 @@ def parser():
     year=date.today().year
     mon=date.today().month
     day=date.today().day
-
+    source_data = POPCON_DATA.format(year,mon,day)
     # Saving data of each day
-    shutil.copyfile(POPCON_CSV,'/data/yellow/vineet/raw_data/popularity_contest/{}/{}/{}'.format(year,mon,day))
+    shutil.copyfile(POPCON_CSV,source_data)
 
     # Comparing the data from csv file and existing table and updating its values 
     with open(POPCON_CSV, 'r',encoding= 'unicode_escape') as file:
