@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-DB_LOC = '/data/yellow/vineet/database/bi_multi_tables.db'
+DB_LOC = '/data/cyan/guacalytics/database/bi_multi_tables.db'
 CONSTRUCT_GRAPH = ''' SELECT s.source_name||'_'||s.version||'_'||bi.type, 
             b.package||'_'||b.version||'_'||b.architecture
         FROM dependency_table d 
