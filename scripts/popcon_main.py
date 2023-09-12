@@ -1,9 +1,9 @@
 import csv
 from datetime import datetime
 import sqlite3
-from database.popcon_db_init import db_init,conn,cursor
-from constants import POPCON_CSV
-from parsers.popcon_parser import parser
+from ingestion.database.popcon_db_init import db_init,conn,cursor
+from ingestion.constants import POPCON_CSV
+from ingestion.parsers.popcon_parser import parser
 
 no_records = 0  
 def popcon():
