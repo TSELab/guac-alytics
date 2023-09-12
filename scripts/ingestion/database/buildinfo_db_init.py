@@ -50,7 +50,7 @@ def init_db(location = DB_LOC):
     conn.commit()
     conn.close()
 
-def open_db(location = LOCATION):
+def open_db(location = DB_LOC):
     conn = sqlite3.connect(location)
     return conn
 
