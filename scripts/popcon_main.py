@@ -27,6 +27,7 @@ def popcon(popcon_file):
 
 if __name__ == "__main__":
         popcon_file = parser(POPCON_TEXT) # Parse the data
+        popcon_file = popcon_file.name
         conn,cursor = db_init(DB_LOC) # Initialize the database
         popcon(popcon_file) # Inserts the records into table
         

@@ -26,5 +26,6 @@ def init(maintainer_file):
 
 if __name__ == "__main__":
         maintainer_file = parser(MAINTAINER_TEXT_FILE) # Parse the data
+        maintainer_file = maintainer_file.name
         conn,cursor = db_init(DB_LOC) # Initialize the database
         init(maintainer_file) # Inserts the records into table
