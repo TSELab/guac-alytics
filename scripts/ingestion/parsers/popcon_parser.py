@@ -48,7 +48,7 @@ def parser(textfile=POPCON_TEXT):
             for line in data[:len(data)-3]:
                 
                 # Skip empty or commented lines
-                if len(line) < 1 or line[0]=='#':
+                if len(line) < 1 or line[0]=='#' or line.startswith("--------") or line.startswith("Total"):
                     continue
                 line = parse_line(line)
                 wr.writerow(line)    

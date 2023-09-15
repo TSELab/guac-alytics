@@ -71,7 +71,7 @@ def parser():
             o=csv.writer(fdout)
             data = data.split("\n")
             for line in data[:len(data)-3]:
-                if len(line) < 1 or line[0]=='#':
+                if len(line) < 1 or line[0]=='#' or line.startswith("--------") or line.startswith("Total"):
                     continue
                 line = parse_line(line)
                 o.writerow(line)    

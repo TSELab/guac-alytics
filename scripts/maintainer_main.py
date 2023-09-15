@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import csv
-import sqlite3
 from ingestion.constants import DB_LOC, MAINTAINER_TEXT_FILE
 from ingestion.database.maintainer_db_init import db_init
 from ingestion.parsers.maintainer_parser import parser

@@ -44,7 +44,7 @@ def parser(textfile = MAINTAINER_TEXT_FILE):
         # Loop through the lines in the file and write them to the CSV file
         for line in fp:
             # Skip empty lines and lines starting with #
-            if not line.strip() or line.startswith("#"):
+            if not line.strip() or line.startswith("#") or line.startswith("--------") or line.startswith("Total"):
                 continue
             
             # Parse the line and write it to the CSV file

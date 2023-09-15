@@ -2,7 +2,6 @@ import time
 import headerparser
 import os
 import re
-from calendar import monthrange
 from ingestion.database.buildinfo_db_init import open_db, init_db, close_db, insert_build
 from ingestion.constants import LOC,DB_LOC
 import progressbar

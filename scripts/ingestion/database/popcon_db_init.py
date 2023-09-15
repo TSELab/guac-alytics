@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 import sqlite3
+import sys
+import os
+# Get the parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # Go up two levels to the project root
+
+# Add the project root directory to sys.path
+sys.path.append(parent_dir)
+from ingestion import constants
 from constants import DB_LOC
 
 def db_init(location=DB_LOC):
