@@ -13,21 +13,18 @@ years = ['2017','2018','2019' ,'2020', '2021', '2022', '2023']  # Add more years
 months = {'01': 31, '02': 28, '03': 31, '04': 30, '05': 31, '06': 30,
           '07': 31, '08': 31, '09': 30, '10': 31, '11': 30, '12': 31}
 
-count=0
+current_directory = os.getcwd()
 
 for year in years:
     for month in months.keys():
         for day in range(1, months[month] + 1):
-            if count>2:
-                break
-            count+=1
             day_str = str(day).zfill(2)  # Add leading zero for single-digit days
             directory_path = os.path.join(LOC, str(year), str(month), day_str)
             os.makedirs(directory_path, exist_ok=True)
             os.chdir(directory_path)
             time.sleep(5)
             
-            url = f'{BUILDINFO}/{year}/{month}/{day_str}'
+            url = BUILDINFO.format(year,month,day_str)
             
             page = requests.get(url)
 
@@ -60,4 +57,5 @@ for year in years:
                                 
                 with open (j, 'w') as g:
                     g.write(data)
-
+            
+            os.chdir(current_directory)
