@@ -2,6 +2,13 @@ import os
 from bs4 import BeautifulSoup as bs 
 import requests
 import time
+import sys
+import os
+# Get the parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # Go up two levels to the project root
+# Add the project root directory to sys.path
+sys.path.append(parent_dir)
+from ingestion import constants
 from constants import LOC, BUILDINFO
          
 years = ['2017','2018','2019' ,'2020', '2021', '2022', '2023']  # Add more years if needed

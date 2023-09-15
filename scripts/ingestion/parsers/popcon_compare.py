@@ -6,6 +6,14 @@ import csv
 import shutil
 from bs4 import BeautifulSoup as bs 
 from datetime import datetime,date
+import sys
+import os
+# Get the parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # Go up two levels to the project root
+
+# Add the project root directory to sys.path
+sys.path.append(parent_dir)
+from ingestion import constants
 from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX,POPCON_DATA,POPCON
 from database.popcon_db_init import conn,cursor
 
