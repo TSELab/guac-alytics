@@ -90,9 +90,10 @@ def parser():
     year=date.today().year
     mon=date.today().month
     day=date.today().day
-    source_data = POPCON_DATA.format(year,mon,day)
-    # Saving data of each day
-    shutil.copyfile(POPCON_CSV,source_data)
+    source_data = POPCON_DATA.format(year, mon,day)
+    os.makedirs(source_data, exist_ok=True)
+    destination_file = os.path.join(source_data, 'data.csv')
+    shutil.copyfile(POPCON_CSV, destination_file)
 
     # Comparing the data from csv file and existing table and updating its values 
     with open(POPCON_CSV, 'r',encoding= 'unicode_escape') as file:

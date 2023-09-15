@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import csv
+import os
 from ingestion.constants import DB_LOC, MAINTAINER_TEXT_FILE
 from ingestion.database.maintainer_db_init import db_init
 from ingestion.parsers.maintainer_parser import parser
@@ -29,3 +30,4 @@ if __name__ == "__main__":
         maintainer_file = maintainer_file.name
         conn,cursor = db_init(DB_LOC) # Initialize the database
         init(maintainer_file) # Inserts the records into table
+        os.remove(maintainer_file)

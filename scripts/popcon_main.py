@@ -1,4 +1,5 @@
 import csv
+import os
 from datetime import datetime
 from ingestion.database.popcon_db_init import db_init
 from ingestion.constants import DB_LOC,POPCON_TEXT
@@ -30,4 +31,5 @@ if __name__ == "__main__":
         popcon_file = popcon_file.name
         conn,cursor = db_init(DB_LOC) # Initialize the database
         popcon(popcon_file) # Inserts the records into table
+        os.remove(popcon_file)
         
