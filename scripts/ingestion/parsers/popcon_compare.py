@@ -8,14 +8,12 @@ from bs4 import BeautifulSoup as bs
 from datetime import datetime,date
 import sys
 import os
-# Get the parent directory
-parent_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # Go up two levels to the project root
-
-# Add the project root directory to sys.path
+# Get the absolute path of the parent directory
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# Add the parent directory to the Python path
 sys.path.append(parent_dir)
-from ingestion import constants
 from constants import POPCON_CSV,POPCON_TEXT,INST_LOC,DB_LOC,REGEX,POPCON_DATA,POPCON
-from database.popcon_db_init import conn,cursor
+from database.popcon_db_init import db_init
 
 x=datetime.now()
 print('On ', datetime.strftime(x,"%m/%d/%Y"))
@@ -126,5 +124,7 @@ def parser():
     file.close()
     os.remove(POPCON_CSV)
     conn.close()
-        
-parser()
+
+if __name__ == "__main__":        
+    conn,cursor = db_init(DB_LOC)
+    parser()
