@@ -1,0 +1,205 @@
+Format: 1.0
+Source: cnrun (2.1.0-1)
+Binary: libcnrun2 libcnrun2-dev cnrun-tools lua-cnrun
+Architecture: kfreebsd-amd64
+Version: 2.1.0-1+b1
+Binary-Only-Changes:
+ cnrun (2.1.0-1+b1) experimental; urgency=low, binary-only=yes
+ .
+   * Binary-only non-maintainer upload for kfreebsd-amd64; no source changes.
+   * Rebuild against libgsl23.
+ .
+  -- kfreebsd-amd64 / kfreebsd-i386 Build Daemon (kamp) <buildd@kamp.buildd.org>  Sat, 07 Apr 2018 08:18:53 +0000
+Checksums-Md5:
+ fc0baec2f89bc766a5ce3c4d05ef052b 103292 cnrun-tools-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 42ecce4c011408e14f9fe0867d7be747 21952 cnrun-tools_2.1.0-1+b1_kfreebsd-amd64.deb
+ 1f39832126dccbad58ebde2ae6cfac0a 949652 libcnrun2-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ a890cf3afbd53f6f7b5beea85c35f343 25376 libcnrun2-dev_2.1.0-1+b1_kfreebsd-amd64.deb
+ 34b3ad01c379010b8bb8b102b0ff56e8 85976 libcnrun2_2.1.0-1+b1_kfreebsd-amd64.deb
+ 5f47904cae52eb57dda7b13fb7dbea89 273968 lua-cnrun-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 3ee244def13a5e8f76200632aec8d027 42184 lua-cnrun_2.1.0-1+b1_kfreebsd-amd64.deb
+Checksums-Sha1:
+ 1c114128ef6dedce577e292b59114e22492c2a69 103292 cnrun-tools-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 7c4247f78d1224879d9cf5e6d345d18248d6181f 21952 cnrun-tools_2.1.0-1+b1_kfreebsd-amd64.deb
+ a3d82df9e6128d31e95f19e9116faaf8d8e59012 949652 libcnrun2-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ dc80f323805d44cf2cbd81103f8420051dcccc71 25376 libcnrun2-dev_2.1.0-1+b1_kfreebsd-amd64.deb
+ 355af43ed88772caf3034b7e0dd0ce6e665a272a 85976 libcnrun2_2.1.0-1+b1_kfreebsd-amd64.deb
+ ddc5ccb4c48aa78dee10f174d7ae5b2fa2160914 273968 lua-cnrun-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 7aa4ee4abfbfb6f70ea6eeed5cbf709ee468bf35 42184 lua-cnrun_2.1.0-1+b1_kfreebsd-amd64.deb
+Checksums-Sha256:
+ 3dae15c7c71b845879e2b0c4dcbad9c682f0a244df2d85ad3690f05072aae854 103292 cnrun-tools-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 89eeb286906e122e328922494e7e923b3e00c8b1be0d2a74321095e5deb9306e 21952 cnrun-tools_2.1.0-1+b1_kfreebsd-amd64.deb
+ e943e3c90d24c007eb631d722202b764f9f392685f81767318751a06ff6b79d8 949652 libcnrun2-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 0030c9bd1a4dbbb5322c75e668c15bbf64cd13f0f113cfbbd81dd441d16b022e 25376 libcnrun2-dev_2.1.0-1+b1_kfreebsd-amd64.deb
+ 2259911a50ee6b0900fc46db1b9c5a75b4d0dc7e0d570f0edb44ca1e55e1a702 85976 libcnrun2_2.1.0-1+b1_kfreebsd-amd64.deb
+ d2186a6bc3c1008ea7ee0f81e5296618ade59e10241b01b4c2bf393cb15533f0 273968 lua-cnrun-dbgsym_2.1.0-1+b1_kfreebsd-amd64.deb
+ 0d9ebf801af519d5e6997b7b531a01f247851b8f7230e77beb7269aa1db7badc 42184 lua-cnrun_2.1.0-1+b1_kfreebsd-amd64.deb
+Build-Origin: Debian
+Build-Architecture: kfreebsd-amd64
+Build-Date: Sat, 07 Apr 2018 08:19:21 +0000
+Build-Path: /build/cnrun-aE882p/cnrun-2.1.0
+Installed-Build-Depends:
+ autoconf (= 2.69-11),
+ autoconf-archive (= 20170928-2),
+ automake (= 1:1.15.1-3),
+ autopoint (= 0.19.8.1-6),
+ autotools-dev (= 20180224.1),
+ base-files (= 10),
+ base-passwd (= 3.5.44),
+ bash (= 4.4-5),
+ binutils (= 2.29.1-11),
+ binutils-common (= 2.29.1-11),
+ binutils-x86-64-kfreebsd-gnu (= 2.29.1-11),
+ bsdmainutils (= 9.0.14),
+ bsdutils (= 1:2.30.2-0.1),
+ build-essential (= 12.4),
+ bzip2 (= 1.0.6-8.1),
+ coreutils (= 8.28-1),
+ cpp (= 4:7.2.0-1d1),
+ cpp-7 (= 7.2.0-17),
+ dash (= 0.5.8-2.5),
+ debconf (= 1.5.66),
+ debhelper (= 11.1.6),
+ debianutils (= 4.8.3),
+ dh-autoreconf (= 17),
+ dh-strip-nondeterminism (= 0.040-1),
+ diffutils (= 1:3.6-1),
+ dpkg (= 1.19.0.5),
+ dpkg-dev (= 1.19.0.5),
+ e2fsprogs (= 1.44.1-1),
+ fdisk (= 2.30.2-0.1),
+ file (= 1:5.32-1),
+ findutils (= 4.6.0+git+20170828-2),
+ freebsd-utils (= 10.3~svn296373-2),
+ g++ (= 4:7.2.0-1d1),
+ g++-7 (= 7.2.0-17),
+ gcc (= 4:7.2.0-1d1),
+ gcc-7 (= 7.2.0-17),
+ gcc-7-base (= 7.2.0-17),
+ gettext (= 0.19.8.1-6),
+ gettext-base (= 0.19.8.1-6),
+ grep (= 3.1-2),
+ groff-base (= 1.22.3-9),
+ gzip (= 1.6-5+b1),
+ hostname (= 3.18+b1),
+ icu-devtools (= 57.1-9),
+ init-system-helpers (= 1.51),
+ intltool-debian (= 0.35.0+20060710.4),
+ kfreebsd-kernel-headers (= 10.3~6),
+ libacl1 (= 2.2.52-3+b1),
+ libarchive-zip-perl (= 1.60-1),
+ libatomic1 (= 7.2.0-17),
+ libattr1 (= 1:2.4.47-2+b2),
+ libbinutils (= 2.29.1-11),
+ libblkid1 (= 2.30.2-0.1),
+ libbsd0 (= 0.8.6-3),
+ libbz2-1.0 (= 1.0.6-8.1),
+ libc-bin (= 2.25-2),
+ libc-dev-bin (= 2.25-2),
+ libc0.1 (= 2.25-2),
+ libc0.1-dev (= 2.25-2),
+ libcam6 (= 10.3~svn296373-10),
+ libcc1-0 (= 7.2.0-17),
+ libcom-err2 (= 1.44.1-1),
+ libcomerr2 (= 1.44.1-1),
+ libcroco3 (= 0.6.12-2),
+ libdb5.3 (= 5.3.28-13.1+b1),
+ libdebconfclient0 (= 0.236),
+ libdpkg-perl (= 1.19.0.5),
+ libexpat1 (= 2.2.3-2),
+ libext2fs2 (= 1.44.1-1),
+ libfdisk1 (= 2.30.2-0.1),
+ libffi6 (= 3.2.1-7),
+ libfile-stripnondeterminism-perl (= 0.040-1),
+ libfreebsd-glue-0 (= 0.2.22),
+ libgcc-7-dev (= 7.2.0-17),
+ libgcc1 (= 1:7.2.0-17),
+ libgdbm3 (= 1.8.3-14),
+ libgeom1 (= 10.3~svn296373-10),
+ libglib2.0-0 (= 2.54.2-1),
+ libgmp10 (= 2:6.1.2+dfsg-1.1),
+ libgomp1 (= 7.2.0-17),
+ libgsl-dev (= 2.4+dfsg-6),
+ libgsl23 (= 2.4+dfsg-6),
+ libgslcblas0 (= 2.4+dfsg-6),
+ libgssapi-krb5-2 (= 1.15.2-2),
+ libicu-dev (= 57.1-9),
+ libicu57 (= 57.1-9),
+ libisl15 (= 0.18-1),
+ libjail1 (= 10.3~svn296373-10),
+ libk5crypto3 (= 1.15.2-2),
+ libkiconv4 (= 10.3~svn296373-10),
+ libkrb5-3 (= 1.15.2-2),
+ libkrb5support0 (= 1.15.2-2),
+ libkvm6 (= 10.3~svn296373-10),
+ liblua5.2-0 (= 5.2.4-1.1+b2),
+ liblua5.2-dev (= 5.2.4-1.1+b2),
+ liblzma5 (= 5.2.2-1.3),
+ libmagic-mgc (= 1:5.32-1),
+ libmagic1 (= 1:5.32-1),
+ libmount1 (= 2.30.2-0.1),
+ libmpc3 (= 1.0.3-2),
+ libmpfr4 (= 3.1.6-1),
+ libncurses5 (= 6.1-1),
+ libncursesw5 (= 6.1-1),
+ libpam-modules (= 1.1.8-3.6),
+ libpam-modules-bin (= 1.1.8-3.6),
+ libpam-runtime (= 1.1.8-3.6),
+ libpam0g (= 1.1.8-3.6),
+ libpcre3 (= 2:8.39-8),
+ libperl5.26 (= 5.26.1-3),
+ libpipeline1 (= 1.5.0-1),
+ libquadmath0 (= 7.2.0-17),
+ libreadline-dev (= 7.0-3),
+ libreadline7 (= 7.0-3),
+ libsbuf6 (= 10.3~svn296373-10),
+ libsigsegv2 (= 2.12-1),
+ libsmartcols1 (= 2.30.2-0.1),
+ libss2 (= 1.44.1-1),
+ libstdc++-7-dev (= 7.2.0-17),
+ libstdc++6 (= 7.2.0-17),
+ libtext-unidecode-perl (= 1.30-1),
+ libtimedate-perl (= 2.3000-2),
+ libtinfo-dev (= 6.1-1),
+ libtinfo5 (= 6.1-1),
+ libtirpc1 (= 0.2.5-1.2),
+ libtool (= 2.4.6-2),
+ libunistring2 (= 0.9.8-1),
+ libutil-freebsd-9 (= 10.3~svn296373-10),
+ libuuid1 (= 2.30.2-0.1),
+ libxml-libxml-perl (= 2.0128+dfsg-5),
+ libxml-namespacesupport-perl (= 1.12-1),
+ libxml-sax-base-perl (= 1.09-1),
+ libxml-sax-perl (= 1.00+dfsg-1),
+ libxml2 (= 2.9.4+dfsg1-6.1),
+ libxml2-dev (= 2.9.4+dfsg1-6.1),
+ login (= 1:4.5-1),
+ lsb-base (= 9.20170808),
+ lua5.2 (= 5.2.4-1.1+b2),
+ m4 (= 1.4.18-1),
+ make (= 4.1-9),
+ man-db (= 2.7.5-2),
+ mawk (= 1.3.3-17+b3),
+ ncurses-base (= 6.0+20171125-1),
+ ncurses-bin (= 6.1-1),
+ patch (= 2.7.5-1+b2),
+ perl (= 5.26.1-3),
+ perl-base (= 5.26.1-3),
+ perl-modules-5.26 (= 5.26.1-3),
+ pkg-config (= 0.29-4+b1),
+ po-debconf (= 1.0.20),
+ readline-common (= 7.0-3),
+ sed (= 4.4-1),
+ sensible-utils (= 0.0.12),
+ sysvinit-utils (= 2.88dsf-59.10),
+ tar (= 1.28-2.2),
+ tex-common (= 6.09),
+ texinfo (= 6.5.0.dfsg.1-1),
+ ucf (= 3.0038),
+ util-linux (= 2.30.2-0.1),
+ xz-utils (= 5.2.2-1.3),
+ zlib1g (= 1:1.2.8.dfsg-5)
+Environment:
+ DEB_BUILD_OPTIONS="parallel=2"
+ LC_ALL="POSIX"
+ SOURCE_DATE_EPOCH="1523089133"

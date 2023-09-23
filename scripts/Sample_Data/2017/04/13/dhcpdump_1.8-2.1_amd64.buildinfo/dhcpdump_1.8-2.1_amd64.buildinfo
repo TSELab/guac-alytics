@@ -1,0 +1,133 @@
+Format: 1.0
+Source: dhcpdump
+Binary: dhcpdump
+Architecture: amd64 source
+Version: 1.8-2.1
+Checksums-Md5:
+ a718b5f695d4ea097f8808531e9fa8c8 1649 dhcpdump_1.8-2.1.dsc
+ a3acec2edcb9dea5377f03755acaebb4 14732 dhcpdump_1.8-2.1_amd64.deb
+Checksums-Sha1:
+ a59e1a12635c81e36ab2ad739be57e80930ac3ef 1649 dhcpdump_1.8-2.1.dsc
+ 596064f6a896d44d68467a9b9ad75855f986fad7 14732 dhcpdump_1.8-2.1_amd64.deb
+Checksums-Sha256:
+ 8bf578836c46f5f6e3d1bb6422f392a63783ada7b24ac764aef36c7f456be2a7 1649 dhcpdump_1.8-2.1.dsc
+ 602406ee8c1a019b8643a140c309113b9b032fb5d0d5414d2fb34c95d10a004a 14732 dhcpdump_1.8-2.1_amd64.deb
+Build-Origin: Debian
+Build-Architecture: amd64
+Build-Date: Thu, 13 Apr 2017 15:45:15 +0000
+Build-Path: /build/dhcpdump-1.8
+Installed-Build-Depends:
+ base-files (= 9.9),
+ base-passwd (= 3.5.43),
+ bash (= 4.4-4+b1),
+ binutils (= 2.28-3),
+ bsdutils (= 1:2.29.2-1),
+ build-essential (= 12.3),
+ bzip2 (= 1.0.6-8.1),
+ coreutils (= 8.26-3),
+ cpp (= 4:6.3.0-4),
+ cpp-6 (= 6.3.0-12),
+ dash (= 0.5.8-2.4),
+ debconf (= 1.5.60),
+ debianutils (= 4.8.1.1),
+ diffutils (= 1:3.5-3),
+ dpkg (= 1.18.23),
+ dpkg-dev (= 1.18.23),
+ e2fslibs (= 1.43.4-2),
+ e2fsprogs (= 1.43.4-2),
+ findutils (= 4.6.0+git+20161106-2),
+ g++ (= 4:6.3.0-4),
+ g++-6 (= 6.3.0-12),
+ gcc (= 4:6.3.0-4),
+ gcc-6 (= 6.3.0-12),
+ gcc-6-base (= 6.3.0-12),
+ grep (= 2.27-2),
+ gzip (= 1.6-5+b1),
+ hostname (= 3.18+b1),
+ init-system-helpers (= 1.47),
+ libacl1 (= 2.2.52-3+b1),
+ libasan3 (= 6.3.0-12),
+ libatomic1 (= 6.3.0-12),
+ libattr1 (= 1:2.4.47-2+b2),
+ libaudit-common (= 1:2.6.7-2),
+ libaudit1 (= 1:2.6.7-2),
+ libblkid1 (= 2.29.2-1),
+ libbz2-1.0 (= 1.0.6-8.1),
+ libc-bin (= 2.24-10),
+ libc-dev-bin (= 2.24-10),
+ libc6 (= 2.24-10),
+ libc6-dev (= 2.24-10),
+ libcap-ng0 (= 0.7.7-3+b1),
+ libcc1-0 (= 6.3.0-12),
+ libcilkrts5 (= 6.3.0-12),
+ libcomerr2 (= 1.43.4-2),
+ libdb5.3 (= 5.3.28-12+b1),
+ libdebconfclient0 (= 0.227),
+ libdpkg-perl (= 1.18.23),
+ libfdisk1 (= 2.29.2-1),
+ libgcc-6-dev (= 6.3.0-12),
+ libgcc1 (= 1:6.3.0-12),
+ libgcrypt20 (= 1.7.6-1),
+ libgdbm3 (= 1.8.3-14),
+ libgmp10 (= 2:6.1.2+dfsg-1),
+ libgomp1 (= 6.3.0-12),
+ libgpg-error0 (= 1.26-2),
+ libisl15 (= 0.18-1),
+ libitm1 (= 6.3.0-12),
+ liblsan0 (= 6.3.0-12),
+ liblz4-1 (= 0.0~r131-2+b1),
+ liblzma5 (= 5.2.2-1.2+b1),
+ libmount1 (= 2.29.2-1),
+ libmpc3 (= 1.0.3-1+b2),
+ libmpfr4 (= 3.1.5-1),
+ libmpx2 (= 6.3.0-12),
+ libncursesw5 (= 6.0+20161126-1),
+ libpam-modules (= 1.1.8-3.5),
+ libpam-modules-bin (= 1.1.8-3.5),
+ libpam-runtime (= 1.1.8-3.5),
+ libpam0g (= 1.1.8-3.5),
+ libpcap0.8 (= 1.8.1-3),
+ libpcap0.8-dev (= 1.8.1-3),
+ libpcre3 (= 2:8.39-3),
+ libperl5.24 (= 5.24.1-2),
+ libquadmath0 (= 6.3.0-12),
+ libselinux1 (= 2.6-3+b1),
+ libsemanage-common (= 2.6-2),
+ libsemanage1 (= 2.6-2),
+ libsepol1 (= 2.6-2),
+ libsmartcols1 (= 2.29.2-1),
+ libss2 (= 1.43.4-2),
+ libstdc++-6-dev (= 6.3.0-12),
+ libstdc++6 (= 6.3.0-12),
+ libsystemd0 (= 232-22),
+ libtinfo5 (= 6.0+20161126-1),
+ libtsan0 (= 6.3.0-12),
+ libubsan0 (= 6.3.0-12),
+ libudev1 (= 232-22),
+ libustr-1.0-1 (= 1.0.4-6),
+ libuuid1 (= 2.29.2-1),
+ linux-libc-dev (= 4.9.18-1),
+ login (= 1:4.4-4),
+ make (= 4.1-9.1),
+ mawk (= 1.3.3-17+b3),
+ mount (= 2.29.2-1),
+ multiarch-support (= 2.24-10),
+ ncurses-base (= 6.0+20161126-1),
+ ncurses-bin (= 6.0+20161126-1),
+ passwd (= 1:4.4-4),
+ patch (= 2.7.5-1+b2),
+ perl (= 5.24.1-2),
+ perl-base (= 5.24.1-2),
+ perl-modules-5.24 (= 5.24.1-2),
+ sed (= 4.4-1),
+ sensible-utils (= 0.0.9),
+ sysvinit-utils (= 2.88dsf-59.9),
+ tar (= 1.29b-1.1),
+ util-linux (= 2.29.2-1),
+ xz-utils (= 5.2.2-1.2+b1),
+ zlib1g (= 1:1.2.8.dfsg-5)
+Environment:
+ DEB_BUILD_OPTIONS="parallel=8"
+ LANG="C"
+ LC_ALL="C"
+ SOURCE_DATE_EPOCH="1492097673"

@@ -1,0 +1,184 @@
+Format: 1.0
+Source: fosfat
+Binary: fosfat libfosfat0 libfosgra0 fosfat-dev
+Architecture: hurd-i386
+Version: 0.4.0-13-ged091bb-3
+Checksums-Md5:
+ aa81c3285a2375ae33a368428963862f 30264 fosfat-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ ed80191b36fa9478ecf63b4e420ab21b 45984 fosfat-dev_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 50e8c94d7669a96c69a73e49dc8ef2c7 22404 fosfat_0.4.0-13-ged091bb-3_hurd-i386.deb
+ e815ca41dfbfa371cf44b44a6f524f1c 19744 libfosfat0-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 0a89fb8ebb89cfa0cf185a8a851c8bb1 15740 libfosfat0_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 6521d3be015a9198e5572bf22d6c1265 6272 libfosgra0-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ e0abe7f1004549d1cadf4bce91452afb 9728 libfosgra0_0.4.0-13-ged091bb-3_hurd-i386.deb
+Checksums-Sha1:
+ ace34e6828e6ee129594461820f7987caa8b034f 30264 fosfat-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 5ba0c214576a4a50e1eb37edcf59561aa91ae593 45984 fosfat-dev_0.4.0-13-ged091bb-3_hurd-i386.deb
+ b9b98572ffc7f9b49b85a7bf9e763033d4d60a10 22404 fosfat_0.4.0-13-ged091bb-3_hurd-i386.deb
+ f46eb278e00d66e803ef4765ecfe739868f6e1b7 19744 libfosfat0-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 0a5e89312211d91e318506e3f056c4d7526b6fd2 15740 libfosfat0_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 7c7c74a75a7920f771cd8c01a2ed182db7844921 6272 libfosgra0-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 1f8e4d2aa880d6bf72200e0cf90539a5308d038b 9728 libfosgra0_0.4.0-13-ged091bb-3_hurd-i386.deb
+Checksums-Sha256:
+ 04d49de124eb86b76a61f07756d9777ea1d078fbc06c60f95fcb8c99436f0e16 30264 fosfat-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ f0dce7dda4492101ff2a5f4a1cfbc1da9ddbccba7852308690fc7d6055a08f92 45984 fosfat-dev_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 93bc973c28a3a9771f766f312ace77663dad880a01a0a4c80e86f29056894bc7 22404 fosfat_0.4.0-13-ged091bb-3_hurd-i386.deb
+ c53017a09a1b8d835471f5e12f3de83e4ae7c4a1c9d52e62130af89f4e2f2534 19744 libfosfat0-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 52edaca62b2ec919f96323748ddc4be0bd925c4a1f013a0717d3ad6575200704 15740 libfosfat0_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 8087f37b93ea87e8292d9377455ec6bef1f2e1b86cd91b47ada7232deee878c2 6272 libfosgra0-dbgsym_0.4.0-13-ged091bb-3_hurd-i386.deb
+ 2a5bb88e1294daf5358275629ff2d007e11aa0182dbc3857d67951109a2c7544 9728 libfosgra0_0.4.0-13-ged091bb-3_hurd-i386.deb
+Build-Origin: Debian
+Build-Architecture: hurd-i386
+Build-Date: Fri, 23 Feb 2018 21:30:32 +0000
+Build-Path: /build/fosfat-uuyFdH/fosfat-0.4.0-13-ged091bb
+Installed-Build-Depends:
+ autoconf (= 2.69-11),
+ automake (= 1:1.15.1-3),
+ autopoint (= 0.19.8.1-4),
+ autotools-dev (= 20171216.1),
+ base-files (= 10.1),
+ base-passwd (= 3.5.44),
+ bash (= 4.4.18-1.1),
+ binutils (= 2.30-5),
+ binutils-common (= 2.30-5),
+ binutils-i686-gnu (= 2.30-5),
+ bsdmainutils (= 9.0.14),
+ bsdutils (= 1:2.30.2-0.3),
+ build-essential (= 12.4),
+ bzip2 (= 1.0.6-8.1),
+ coreutils (= 8.28-1),
+ cpp (= 4:7.2.0-1d1),
+ cpp-7 (= 7.2.0-19),
+ dash (= 0.5.7-4),
+ debconf (= 1.5.65),
+ debhelper (= 11.1.4),
+ debianutils (= 4.8.4),
+ dh-autoreconf (= 16),
+ dh-strip-nondeterminism (= 0.040-1),
+ diffutils (= 1:3.6-1),
+ doxygen (= 1.8.13-9),
+ dpkg (= 1.19.0.5),
+ dpkg-dev (= 1.19.0.5),
+ e2fsprogs (= 1.43.9-1),
+ fdisk (= 2.30.2-0.3),
+ file (= 1:5.32-2),
+ findutils (= 4.6.0+git+20170828-2),
+ g++ (= 4:7.2.0-1d1),
+ g++-7 (= 7.2.0-19),
+ gcc (= 4:7.2.0-1d1),
+ gcc-7 (= 7.2.0-19),
+ gcc-7-base (= 7.2.0-19),
+ gettext (= 0.19.8.1-4),
+ gettext-base (= 0.19.8.1-4),
+ gnumach-dev (= 2:1.8+git20171101-2),
+ grep (= 3.1-2),
+ groff-base (= 1.22.3-10),
+ gzip (= 1.6-5),
+ hostname (= 3.20),
+ hurd (= 1:0.9.git20180108-2),
+ hurd-dev (= 1:0.9.git20180108-2),
+ hurd-libs0.3 (= 1:0.9.git20180108-2),
+ init-system-helpers (= 1.51),
+ insserv (= 1.14.0-5.4),
+ intltool-debian (= 0.35.0+20060710.4),
+ libacl1 (= 2.2.52-3),
+ libarchive-zip-perl (= 1.60-1),
+ libatomic1 (= 7.2.0-19),
+ libattr1 (= 1:2.4.47-2+b1),
+ libbinutils (= 2.30-5),
+ libblkid1 (= 2.30.2-0.3),
+ libbsd0 (= 0.8.7-1),
+ libbz2-1.0 (= 1.0.6-8.1),
+ libc-bin (= 2.26-5),
+ libc-dev-bin (= 2.26-5),
+ libc0.3 (= 2.26-5),
+ libc0.3-dev (= 2.26-5),
+ libcc1-0 (= 7.2.0-19),
+ libcom-err2 (= 1.43.9-1),
+ libcroco3 (= 0.6.12-2),
+ libdaemon0 (= 0.14-6+b1),
+ libdb5.3 (= 5.3.28-13.1),
+ libdebconfclient0 (= 0.241),
+ libdpkg-perl (= 1.19.0.5),
+ libext2fs2 (= 1.43.9-1),
+ libfdisk1 (= 2.30.2-0.3),
+ libffi6 (= 3.2.1-8),
+ libfile-stripnondeterminism-perl (= 0.040-1),
+ libfuse-hurd-dev (= 0.0.20140820-3),
+ libfuse-hurd1 (= 0.0.20140820-3),
+ libgcc-7-dev (= 7.2.0-19),
+ libgcc1 (= 1:7.2.0-19),
+ libgcrypt20 (= 1.8.1-4),
+ libgdbm3 (= 1.8.3-14),
+ libgdbm5 (= 1.14.1-4),
+ libglib2.0-0 (= 2.54.2-5),
+ libgmp10 (= 2:6.1.2+dfsg-2),
+ libgomp1 (= 7.2.0-19),
+ libgpg-error0 (= 1.27-6),
+ libicu57 (= 57.1-8),
+ libisl15 (= 0.18-1),
+ liblzma5 (= 5.2.2-1.3),
+ libmagic-mgc (= 1:5.32-2),
+ libmagic1 (= 1:5.32-2),
+ libmount1 (= 2.30.2-0.3),
+ libmpc3 (= 1.1.0-1),
+ libmpfr4 (= 3.1.6-1),
+ libmpfr6 (= 4.0.1-1),
+ libncurses5 (= 6.1-1),
+ libncursesw5 (= 6.1-1),
+ libpam-modules (= 1.1.8-3.7),
+ libpam-modules-bin (= 1.1.8-3.7),
+ libpam-runtime (= 1.1.8-3.7),
+ libpam0g (= 1.1.8-3.7),
+ libparted2 (= 3.2-20),
+ libpciaccess0 (= 0.13.4-1+b2),
+ libpcre3 (= 2:8.39-9),
+ libperl5.26 (= 5.26.1-3),
+ libpipeline1 (= 1.5.0-1),
+ libquadmath0 (= 7.2.0-19),
+ libsigsegv2 (= 2.12-1),
+ libsmartcols1 (= 2.30.2-0.3),
+ libss2 (= 1.43.9-1),
+ libstdc++-7-dev (= 7.2.0-19),
+ libstdc++6 (= 7.2.0-19),
+ libtimedate-perl (= 2.3000-2),
+ libtinfo5 (= 6.1-1),
+ libtool (= 2.4.6-2),
+ libunistring2 (= 0.9.7-2),
+ libuuid1 (= 2.30.2-0.3),
+ libx11-6 (= 2:1.6.4-3),
+ libx11-data (= 2:1.6.4-3),
+ libxapian30 (= 1.4.2-1),
+ libxau6 (= 1:1.0.8-1+b2),
+ libxcb1 (= 1.12-1),
+ libxdmcp6 (= 1:1.1.2-3),
+ libxml2 (= 2.9.4+dfsg1-6.1),
+ login (= 1:4.5-1),
+ lsb-base (= 9.20170808),
+ m4 (= 1.4.18-1),
+ make (= 4.1-9.1),
+ man-db (= 2.8.1-1),
+ mawk (= 1.3.3-17+b1),
+ ncurses-base (= 6.1-1),
+ ncurses-bin (= 6.1-1),
+ netdde (= 0.0.20150828-4),
+ patch (= 2.7.6-1),
+ perl (= 5.26.1-3),
+ perl-base (= 5.26.1-3),
+ perl-modules-5.26 (= 5.26.1-3),
+ pkg-config (= 0.29-4),
+ po-debconf (= 1.0.20),
+ sed (= 4.4-1),
+ startpar (= 0.59-4),
+ sysv-rc (= 2.88dsf-59.10),
+ sysvinit-utils (= 2.88dsf-59.10),
+ tar (= 1.29b-1.1),
+ util-linux (= 2.30.2-0.3),
+ xkb-data (= 2.23.1-1),
+ xz-utils (= 5.2.2-1.3),
+ zlib1g (= 1:1.2.8.dfsg-5)
+Environment:
+ DEB_BUILD_OPTIONS="parallel=1"
+ LANG="en_US.UTF-8"
+ LC_ALL="POSIX"
+ SOURCE_DATE_EPOCH="1519415623"

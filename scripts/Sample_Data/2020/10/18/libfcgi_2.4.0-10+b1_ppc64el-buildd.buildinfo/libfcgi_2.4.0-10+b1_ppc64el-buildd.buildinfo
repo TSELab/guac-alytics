@@ -1,0 +1,191 @@
+Format: 1.0
+Source: libfcgi (2.4.0-10)
+Binary: libfcgi-bin libfcgi-bin-dbgsym libfcgi-dev libfcgi0ldbl libfcgi0ldbl-dbgsym
+Architecture: ppc64el
+Version: 2.4.0-10+b1
+Binary-Only-Changes:
+ libfcgi (2.4.0-10+b1) sid; urgency=low, binary-only=yes
+ .
+   * Binary-only non-maintainer upload for ppc64el; no source changes.
+   * Rebuild with gcc defaulting to --as-needed
+ .
+  -- ppc64el Build Daemon (ppc64el-unicamp-01) <buildd_ppc64el-ppc64el-unicamp-01@buildd.debian.org>  Sun, 18 Oct 2020 09:26:49 +0000
+Checksums-Md5:
+ 0ce6b93acca15fc877141c26f8137b4a 15412 libfcgi-bin-dbgsym_2.4.0-10+b1_ppc64el.deb
+ d8c4f608f16ee2e5334623e08a797cbc 13476 libfcgi-bin_2.4.0-10+b1_ppc64el.deb
+ f9ec9e8bbcf26398950532cbaf1673b1 37764 libfcgi-dev_2.4.0-10+b1_ppc64el.deb
+ d8e6ac26febe8be52bfce43cfba8b307 81704 libfcgi0ldbl-dbgsym_2.4.0-10+b1_ppc64el.deb
+ ae8e68cab13f8ca2dda1d20a256e9c19 157796 libfcgi0ldbl_2.4.0-10+b1_ppc64el.deb
+Checksums-Sha1:
+ 93ee91c519b68f95aeb38dffebd660148361c250 15412 libfcgi-bin-dbgsym_2.4.0-10+b1_ppc64el.deb
+ 2a244aad232bee552170f98c61383a5dd27bbc0d 13476 libfcgi-bin_2.4.0-10+b1_ppc64el.deb
+ de506d61e8d92cdadeaf99a30744c826870b149d 37764 libfcgi-dev_2.4.0-10+b1_ppc64el.deb
+ ed91a3b0328edcc2bacb3c9bbd1fe046369d4743 81704 libfcgi0ldbl-dbgsym_2.4.0-10+b1_ppc64el.deb
+ e2fb635245708f47ef95a25ff5d92ad197e63254 157796 libfcgi0ldbl_2.4.0-10+b1_ppc64el.deb
+Checksums-Sha256:
+ 7016bac61e3eb43eb1059340f1b687e30b9794cc53ba7aa87855e8af82535c01 15412 libfcgi-bin-dbgsym_2.4.0-10+b1_ppc64el.deb
+ b64cabeb0862d43cabe0684cb3f364312aa301920e4770d6108b30607b8cfff0 13476 libfcgi-bin_2.4.0-10+b1_ppc64el.deb
+ 322e285622ff061c7bc3dd6e205eb1268e579e513ce8b8600e048a45e63936c7 37764 libfcgi-dev_2.4.0-10+b1_ppc64el.deb
+ 7f9db851227e6a208ed27e89190e5286b8277df989c05d70f3ad9e6b38b2bea6 81704 libfcgi0ldbl-dbgsym_2.4.0-10+b1_ppc64el.deb
+ 4d74d1d5138099bfcc7f2f7f06f02ac96006adc231d268a92dc5e8039fb8c0f9 157796 libfcgi0ldbl_2.4.0-10+b1_ppc64el.deb
+Build-Origin: Debian
+Build-Architecture: ppc64el
+Build-Date: Sun, 18 Oct 2020 09:27:16 +0000
+Build-Path: /build/libfcgi-A5i7jc/libfcgi-2.4.0
+Installed-Build-Depends:
+ autoconf (= 2.69-11.1),
+ automake (= 1:1.16.2-4),
+ autopoint (= 0.19.8.1-10),
+ autotools-dev (= 20180224.1),
+ base-files (= 11),
+ base-passwd (= 3.5.48),
+ bash (= 5.0-7),
+ binutils (= 2.35.1-2),
+ binutils-common (= 2.35.1-2),
+ binutils-powerpc64le-linux-gnu (= 2.35.1-2),
+ bsdextrautils (= 2.36-3+b1),
+ bsdutils (= 1:2.36-3+b1),
+ build-essential (= 12.8),
+ bzip2 (= 1.0.8-4),
+ coreutils (= 8.32-4),
+ cpp (= 4:10.2.0-1),
+ cpp-10 (= 10.2.0-15),
+ dash (= 0.5.10.2-7),
+ debconf (= 1.5.74),
+ debhelper (= 13.2.1),
+ debianutils (= 4.11.2),
+ dh-autoreconf (= 19),
+ dh-strip-nondeterminism (= 1.9.0-1),
+ diffutils (= 1:3.7-3),
+ dpkg (= 1.20.5),
+ dpkg-dev (= 1.20.5),
+ dwz (= 0.13-5),
+ file (= 1:5.38-5),
+ findutils (= 4.7.0-1),
+ g++ (= 4:10.2.0-1),
+ g++-10 (= 10.2.0-15),
+ gcc (= 4:10.2.0-1),
+ gcc-10 (= 10.2.0-15),
+ gcc-10-base (= 10.2.0-15),
+ gettext (= 0.19.8.1-10),
+ gettext-base (= 0.19.8.1-10),
+ grep (= 3.4-1),
+ groff-base (= 1.22.4-5),
+ gzip (= 1.10-2),
+ hostname (= 3.23),
+ init-system-helpers (= 1.58),
+ intltool-debian (= 0.35.0+20060710.5),
+ libacl1 (= 2.2.53-8),
+ libarchive-zip-perl (= 1.68-1),
+ libasan6 (= 10.2.0-15),
+ libatomic1 (= 10.2.0-15),
+ libattr1 (= 1:2.4.48-5),
+ libaudit-common (= 1:2.8.5-3),
+ libaudit1 (= 1:2.8.5-3+b1),
+ libbinutils (= 2.35.1-2),
+ libblkid1 (= 2.36-3+b1),
+ libbz2-1.0 (= 1.0.8-4),
+ libc-bin (= 2.31-4),
+ libc-dev-bin (= 2.31-4),
+ libc6 (= 2.31-4),
+ libc6-dev (= 2.31-4),
+ libcap-ng0 (= 0.7.9-2.2),
+ libcc1-0 (= 10.2.0-15),
+ libcom-err2 (= 1.45.6-1),
+ libcroco3 (= 0.6.13-1),
+ libcrypt-dev (= 1:4.4.17-1),
+ libcrypt1 (= 1:4.4.17-1),
+ libctf-nobfd0 (= 2.35.1-2),
+ libctf0 (= 2.35.1-2),
+ libdb5.3 (= 5.3.28+dfsg1-0.6),
+ libdebconfclient0 (= 0.254),
+ libdebhelper-perl (= 13.2.1),
+ libdpkg-perl (= 1.20.5),
+ libelf1 (= 0.181-1),
+ libffi7 (= 3.3-4),
+ libfile-stripnondeterminism-perl (= 1.9.0-1),
+ libgcc-10-dev (= 10.2.0-15),
+ libgcc-s1 (= 10.2.0-15),
+ libgcrypt20 (= 1.8.6-2),
+ libgdbm-compat4 (= 1.18.1-5.1),
+ libgdbm6 (= 1.18.1-5.1),
+ libglib2.0-0 (= 2.66.1-2),
+ libgmp10 (= 2:6.2.0+dfsg-6),
+ libgomp1 (= 10.2.0-15),
+ libgpg-error0 (= 1.38-2),
+ libgssapi-krb5-2 (= 1.17-10),
+ libicu67 (= 67.1-4),
+ libisl22 (= 0.22.1-1),
+ libitm1 (= 10.2.0-15),
+ libk5crypto3 (= 1.17-10),
+ libkeyutils1 (= 1.6.1-2),
+ libkrb5-3 (= 1.17-10),
+ libkrb5support0 (= 1.17-10),
+ liblsan0 (= 10.2.0-15),
+ liblz4-1 (= 1.9.2-2),
+ liblzma5 (= 5.2.4-1+b1),
+ libmagic-mgc (= 1:5.38-5),
+ libmagic1 (= 1:5.38-5),
+ libmount1 (= 2.36-3+b1),
+ libmpc3 (= 1.2.0-1),
+ libmpfr6 (= 4.1.0-3),
+ libnsl-dev (= 1.3.0-2),
+ libnsl2 (= 1.3.0-2),
+ libnss-nis (= 3.1-3),
+ libnss-nisplus (= 1.3-3),
+ libpam-modules (= 1.3.1-5),
+ libpam-modules-bin (= 1.3.1-5),
+ libpam-runtime (= 1.3.1-5),
+ libpam0g (= 1.3.1-5),
+ libpcre2-8-0 (= 10.34-7),
+ libpcre3 (= 2:8.39-13),
+ libperl5.30 (= 5.30.3-4),
+ libpipeline1 (= 1.5.3-1),
+ libquadmath0 (= 10.2.0-15),
+ libseccomp2 (= 2.4.4-1+b1),
+ libselinux1 (= 3.1-2+b1),
+ libsigsegv2 (= 2.12-2),
+ libsmartcols1 (= 2.36-3+b1),
+ libssl1.1 (= 1.1.1h-1),
+ libstdc++-10-dev (= 10.2.0-15),
+ libstdc++6 (= 10.2.0-15),
+ libsub-override-perl (= 0.09-2),
+ libsystemd0 (= 246.6-1),
+ libtinfo6 (= 6.2+20200918-1),
+ libtirpc-common (= 1.2.6-3),
+ libtirpc-dev (= 1.2.6-3),
+ libtirpc3 (= 1.2.6-3),
+ libtool (= 2.4.6-14),
+ libtsan0 (= 10.2.0-15),
+ libubsan1 (= 10.2.0-15),
+ libuchardet0 (= 0.0.7-1),
+ libudev1 (= 246.6-1),
+ libunistring2 (= 0.9.10-4),
+ libuuid1 (= 2.36-3+b1),
+ libxml2 (= 2.9.10+dfsg-6.1),
+ libzstd1 (= 1.4.5+dfsg-4),
+ linux-libc-dev (= 5.8.14-1),
+ login (= 1:4.8.1-1),
+ lsb-base (= 11.1.0),
+ m4 (= 1.4.18-4),
+ make (= 4.3-4),
+ man-db (= 2.9.3-2),
+ mawk (= 1.3.4.20200120-2),
+ ncurses-base (= 6.2+20200918-1),
+ ncurses-bin (= 6.2+20200918-1),
+ patch (= 2.7.6-6),
+ perl (= 5.30.3-4),
+ perl-base (= 5.30.3-4),
+ perl-modules-5.30 (= 5.30.3-4),
+ po-debconf (= 1.0.21),
+ sed (= 4.7-1),
+ sensible-utils (= 0.0.12+nmu1),
+ sysvinit-utils (= 2.96-5),
+ tar (= 1.30+dfsg-7),
+ util-linux (= 2.36-3+b1),
+ xz-utils (= 5.2.4-1+b1),
+ zlib1g (= 1:1.2.11.dfsg-2)
+Environment:
+ DEB_BUILD_OPTIONS="parallel=8"
+ LC_ALL="C.UTF-8"
+ SOURCE_DATE_EPOCH="1603013209"

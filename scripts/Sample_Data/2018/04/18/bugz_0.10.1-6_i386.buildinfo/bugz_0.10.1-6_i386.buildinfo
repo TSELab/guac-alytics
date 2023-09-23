@@ -1,0 +1,183 @@
+Format: 1.0
+Source: bugz
+Binary: bugz
+Architecture: all source
+Version: 0.10.1-6
+Checksums-Md5:
+ 282cbe49b9e24d9bffd43c58e841d959 1833 bugz_0.10.1-6.dsc
+ d91a7f0605b0b23ed06ef7203ca82a93 19008 bugz_0.10.1-6_all.deb
+Checksums-Sha1:
+ b5dc43117cbaf45ccf75b1e3763c5f0b45ef4785 1833 bugz_0.10.1-6.dsc
+ 7e16c103cd1c7f86c22cdc191f6f2438c08a08bd 19008 bugz_0.10.1-6_all.deb
+Checksums-Sha256:
+ 9bd070ca7431cad17c012f3e823aeb1ebf5c8e08aaf78f95d3f2d723996154c9 1833 bugz_0.10.1-6.dsc
+ 9a1452cc1efc999a504f46e13a52998bd2f616607b88e68f5c2948834ec1aeb9 19008 bugz_0.10.1-6_all.deb
+Build-Origin: Debian
+Build-Architecture: i386
+Build-Date: Wed, 18 Apr 2018 06:30:48 +0000
+Build-Path: /build/bugz-0.10.1
+Installed-Build-Depends:
+ autoconf (= 2.69-11),
+ automake (= 1:1.15.1-3.1),
+ autopoint (= 0.19.8.1-6),
+ autotools-dev (= 20180224.1),
+ base-files (= 10.1),
+ base-passwd (= 3.5.44),
+ bash (= 4.4.18-2),
+ binutils (= 2.29.1-4),
+ binutils-common (= 2.29.1-4),
+ binutils-i686-linux-gnu (= 2.29.1-4),
+ bsdmainutils (= 11.1.2),
+ bsdutils (= 1:2.31.1-0.5),
+ build-essential (= 12.3),
+ bzip2 (= 1.0.6-8.1),
+ coreutils (= 8.28-1),
+ cpp (= 4:7.1.0-2),
+ cpp-7 (= 7.2.0-8),
+ dash (= 0.5.8-2.10),
+ debconf (= 1.5.66),
+ debhelper (= 11.2.1),
+ debianutils (= 4.8.4),
+ dh-autoreconf (= 17),
+ dh-strip-nondeterminism (= 0.041-1),
+ diffutils (= 1:3.6-1),
+ dpkg (= 1.19.0.5),
+ dpkg-dev (= 1.19.0.5),
+ e2fslibs (= 1.43.6-1),
+ e2fsprogs (= 1.43.6-1),
+ fdisk (= 2.29.2-4),
+ file (= 1:5.32-2),
+ findutils (= 4.6.0+git+20171230-2),
+ g++ (= 4:7.1.0-2),
+ g++-7 (= 7.2.0-8),
+ gcc (= 4:7.1.0-2),
+ gcc-7 (= 7.2.0-8),
+ gcc-7-base (= 7.2.0-8),
+ gettext (= 0.19.8.1-6),
+ gettext-base (= 0.19.8.1-6),
+ grep (= 3.1-2),
+ groff-base (= 1.22.3-10),
+ gzip (= 1.6-5+b1),
+ hostname (= 3.20),
+ init-system-helpers (= 1.51),
+ intltool-debian (= 0.35.0+20060710.4),
+ libacl1 (= 2.2.52-3+b1),
+ libarchive-zip-perl (= 1.60-1),
+ libasan4 (= 7.2.0-8),
+ libatomic1 (= 7.2.0-8),
+ libattr1 (= 1:2.4.47-2+b2),
+ libaudit-common (= 1:2.8.2-1),
+ libaudit1 (= 1:2.8.2-1),
+ libbinutils (= 2.29.1-4),
+ libblkid1 (= 2.29.2-5+b1),
+ libbsd0 (= 0.8.7-1),
+ libbz2-1.0 (= 1.0.6-8.1),
+ libc-bin (= 2.27-3),
+ libc-dev-bin (= 2.27-3),
+ libc6 (= 2.27-3),
+ libc6-dev (= 2.27-3),
+ libcap-ng0 (= 0.7.7-3.1+b1),
+ libcc1-0 (= 7.2.0-8),
+ libcilkrts5 (= 7.2.0-8),
+ libcomerr2 (= 1.43.6-1),
+ libcroco3 (= 0.6.12-2),
+ libdb5.3 (= 5.3.28-13.1+b1),
+ libdebconfclient0 (= 0.243),
+ libdpkg-perl (= 1.19.0.5),
+ libexpat1 (= 2.2.5-3),
+ libfdisk1 (= 2.29.2-5+b1),
+ libffi6 (= 3.2.1-8),
+ libfile-stripnondeterminism-perl (= 0.041-1),
+ libgcc-7-dev (= 7.2.0-8),
+ libgcc1 (= 1:7.2.0-8),
+ libgcrypt20 (= 1.8.2-2),
+ libgdbm-compat4 (= 1.14.1-6),
+ libgdbm5 (= 1.14.1-6),
+ libglib2.0-0 (= 2.56.1-2),
+ libgmp10 (= 2:6.1.2+dfsg-3),
+ libgomp1 (= 7.2.0-8),
+ libgpg-error0 (= 1.29-3),
+ libicu57 (= 57.1-9),
+ libisl15 (= 0.18-4),
+ libitm1 (= 7.2.0-8),
+ liblz4-1 (= 1.8.1.2-1),
+ liblzma5 (= 5.2.2-1.3),
+ libmagic-mgc (= 1:5.32-2),
+ libmagic1 (= 1:5.32-2),
+ libmount1 (= 2.29.2-5+b1),
+ libmpc3 (= 1.0.3-2),
+ libmpfr4 (= 3.1.6-1),
+ libmpx2 (= 7.2.0-8),
+ libncurses5 (= 6.1-1),
+ libncursesw5 (= 6.1-1),
+ libpam-modules (= 1.1.8-3.7),
+ libpam-modules-bin (= 1.1.8-3.7),
+ libpam-runtime (= 1.1.8-3.7),
+ libpam0g (= 1.1.8-3.7),
+ libpcre3 (= 2:8.39-9),
+ libperl5.26 (= 5.26.1-5),
+ libpipeline1 (= 1.5.0-1),
+ libpython-stdlib (= 2.7.14-4),
+ libpython2.7-minimal (= 2.7.14-8),
+ libpython2.7-stdlib (= 2.7.14-8),
+ libquadmath0 (= 7.2.0-8),
+ libreadline7 (= 7.0-3),
+ libseccomp2 (= 2.3.1-2.1),
+ libselinux1 (= 2.7-2+b2),
+ libsigsegv2 (= 2.12-2),
+ libsmartcols1 (= 2.29.2-5+b1),
+ libsqlite3-0 (= 3.23.1-1),
+ libss2 (= 1.43.6-1),
+ libssl1.1 (= 1.1.0h-2),
+ libstdc++-7-dev (= 7.2.0-8),
+ libstdc++6 (= 7.2.0-8),
+ libsystemd0 (= 234-3),
+ libtimedate-perl (= 2.3000-2),
+ libtinfo5 (= 6.1-1),
+ libtool (= 2.4.6-2),
+ libubsan0 (= 7.2.0-8),
+ libudev1 (= 234-3),
+ libunistring2 (= 0.9.8-1),
+ libuuid1 (= 2.29.2-5+b1),
+ libxml2 (= 2.9.4+dfsg1-6.1),
+ linux-libc-dev (= 4.15.11-1),
+ login (= 1:4.5-1),
+ m4 (= 1.4.18-1),
+ make (= 4.1-9.1),
+ man-db (= 2.8.3-2),
+ mawk (= 1.3.3-17+b3),
+ mime-support (= 3.60),
+ ncurses-base (= 6.1-1),
+ ncurses-bin (= 6.1-1),
+ patch (= 2.7.6-2),
+ perl (= 5.26.1-5),
+ perl-base (= 5.26.1-5),
+ perl-modules-5.26 (= 5.26.1-5),
+ po-debconf (= 1.0.20),
+ python (= 2.7.14-4),
+ python-minimal (= 2.7.14-4),
+ python2.7 (= 2.7.14-8),
+ python2.7-minimal (= 2.7.14-8),
+ readline-common (= 7.0-3),
+ sed (= 4.4-2),
+ sysvinit-utils (= 2.88dsf-59.10),
+ tar (= 1.29b-2),
+ util-linux (= 2.29.2-4),
+ xz-utils (= 5.2.2-1.3),
+ zlib1g (= 1:1.2.8.dfsg-5)
+Environment:
+ DEB_BUILD_OPTIONS="parallel=4"
+ LANG="C"
+ LC_ADDRESS="de_DE.UTF-8"
+ LC_ALL="C"
+ LC_IDENTIFICATION="de_DE.UTF-8"
+ LC_MEASUREMENT="de_DE.UTF-8"
+ LC_MESSAGES="C"
+ LC_MONETARY="de_DE.UTF-8"
+ LC_NAME="de_DE.UTF-8"
+ LC_NUMERIC="de_DE.UTF-8"
+ LC_PAPER="de_DE.UTF-8"
+ LC_TELEPHONE="de_DE.UTF-8"
+ LC_TIME="de_DE.UTF-8"
+ LD_LIBRARY_PATH="/usr/lib/libeatmydata"
+ SOURCE_DATE_EPOCH="1524032937"
