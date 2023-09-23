@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-LOC = './buildinfo_data/'
+LOC = './Sample_Data/'
 DB_LOC = './bi_multi_tables.db'
 MAINTAINER_INST_LOC = "https://popcon.debian.org/maint/by_inst"
 MAINTAINER_TEXT_FILE = 'maintainer.txt'
